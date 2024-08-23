@@ -3,9 +3,10 @@
 This Node-RED flow and fuction Pipe enables seamless interaction between **Nano-GPT.com** and **OpenWebUI**.
 
 ## Key Features:
-- **Direct Integration**: Connects OpenWebUI with Nano-GPT.com.
-- **Real-Time Responses**: Send and receive AI-generated chat responses.
-- **Easy Configuration**: Your API Key and Node-RED URL can be easily set within the function of OpenWebUI.
+
+- **Integration**: Connects OpenWebUI with Nano-GPT.com.
+  
+- **Configuration**: Your API Key and Node-RED URL can be easily set within the function of OpenWebUI.
   
 ## OpenWebUI Chat:
 ![Photo Of OpenWebUI](https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/OpenWebui-NodeRed-NanoGPT.png)
