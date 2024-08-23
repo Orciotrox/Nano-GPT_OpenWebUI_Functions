@@ -1,0 +1,1335 @@
+[
+    {
+        "id": "eb7364ef3ca37b14",
+        "type": "tab",
+        "label": "NanoGPT OpenWebUI Node Red",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1169b407c08c2cf6",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nanochatpayload",
+                "pt": "msg",
+                "to": "{\"prompt\":\"\",\"model\":\"model\",\"messages\":\"messages\"}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://nano-gpt.com/api/CHATORIMMAGE",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "urlType.TalkToGPT",
+                "pt": "msg",
+                "to": "talk-to-gpt",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "urlType.TalkToGemini",
+                "pt": "msg",
+                "to": "talk-to-gemini",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "startpayload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 415,
+        "y": 460,
+        "wires": [
+            [
+                "4ea98c462fade828"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "53bd3294a4df13b8",
+        "type": "debug",
+        "z": "eb7364ef3ca37b14",
+        "name": "Models",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d60accdad92204a2",
+        "type": "http in",
+        "z": "eb7364ef3ca37b14",
+        "name": "Models",
+        "url": "/models",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 360,
+        "wires": [
+            [
+                "466ef42367056efe"
+            ]
+        ]
+    },
+    {
+        "id": "466ef42367056efe",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "OpenAI",
+        "rules": [
+            {
+                "t": "set",
+                "p": "openaiModels",
+                "pt": "msg",
+                "to": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-3.5-turbo\",\"object\":\"model\",\"created\":1677610602,\"owned_by\":\"openai\"},{\"id\":\"gpt-3.5-turbo-1106\",\"object\":\"model\",\"created\":1698959748,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-16k\",\"object\":\"model\",\"created\":1683758102,\"owned_by\":\"openai-internal\"},{\"id\":\"gpt-4o-mini-2024-07-18\",\"object\":\"model\",\"created\":1721172717,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-instruct-0914\",\"object\":\"model\",\"created\":1694122472,\"owned_by\":\"system\"},{\"id\":\"gpt-4o-mini\",\"object\":\"model\",\"created\":1721172741,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-0125\",\"object\":\"model\",\"created\":1706048358,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-instruct\",\"object\":\"model\",\"created\":1692901427,\"owned_by\":\"system\"}]}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "nano-gtpToken",
+                "pt": "msg",
+                "to": "req.rawHeaders[3]",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "nano-gtpToken",
+                "pt": "msg",
+                "from": "Bearer ",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 375,
+        "y": 360,
+        "wires": [
+            [
+                "d3607fe83ef340da"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "d3607fe83ef340da",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/models",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 415,
+        "y": 360,
+        "wires": [
+            [
+                "a4acb8b4104ab7ef"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a4acb8b4104ab7ef",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano Models",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retry",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanotext",
+                "pt": "msg",
+                "to": "payload.models.text",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoimage",
+                "pt": "msg",
+                "to": "payload.models.image",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 455,
+        "y": 360,
+        "wires": [
+            [
+                "f8601518610dcd0a"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "4913d041badcc1ac",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "OpenWebUIPayload",
+        "func": "\n\n// Ensure msg.OpenWebUIPayload is defined and initialize data as an array if necessary\nif (!msg.OpenWebUIPayload) {\n    msg.OpenWebUIPayload = {};\n}\n\n// Initialize data as an array if it is not already\nif (!Array.isArray(msg.OpenWebUIPayload.data)) {\n    msg.OpenWebUIPayload.data = [];\n}\n\n// Ensure msg.nanotext is defined and is an object\nif (msg.nanotext && typeof msg.nanotext === 'object') {\n    // Initialize a set of existing model IDs for quick lookup\n    let existingModels = new Set(msg.OpenWebUIPayload.data.map(item => item.id));\n\n    // Iterate over each key in msg.nanotext\n    for (const key in msg.nanotext) {\n        if (msg.nanotext.hasOwnProperty(key)) {\n            const model = msg.nanotext[key].model;\n            const id = model + \"-nano\"; \n\n            // Check if the model already exists in OpenWebUIPayload.data\n            if (!existingModels.has(model)) {\n                // If not, push the new entry\n                msg.OpenWebUIPayload.data.push({\n                    id: id,\n                    object: \"model\",\n                    created: 1721172717,\n                    owned_by: \"system\"\n                    // Add any other properties you might need from msg.nanotext\n                    //name: msg.nanotext[key].name,\n                    //description: msg.nanotext[key].description,\n                    //cost: msg.nanotext[key].cost,\n                    //costEstimate: msg.nanotext[key].costEstimate,\n                    //label: msg.nanotext[key].label,\n                    //labelVariant: msg.nanotext[key].labelVariant,\n                    //visible: msg.nanotext[key].visible\n                });\n                // Update the set of existing models\n                existingModels.add(model);\n            }\n        }\n    }\n} else {\n    node.warn(\"msg.nanotext is not defined or is not an object\");\n}\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 535,
+        "y": 360,
+        "wires": [
+            [
+                "62a4acb6cc6ddad6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f8601518610dcd0a",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "OpenWebUIPayload.object",
+                "pt": "msg",
+                "to": "list",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 495,
+        "y": 360,
+        "wires": [
+            [
+                "4913d041badcc1ac"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "7b99cf7fb5abf2cf",
+        "type": "http response",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "62a4acb6cc6ddad6",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "OpenWebUIPayload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 575,
+        "y": 360,
+        "wires": [
+            [
+                "53bd3294a4df13b8",
+                "7b99cf7fb5abf2cf"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5df5550dbedfac27",
+        "type": "http in",
+        "z": "eb7364ef3ca37b14",
+        "name": "Chat",
+        "url": "/chat/completions",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 460,
+        "wires": [
+            [
+                "5205a4b0cf386896"
+            ]
+        ]
+    },
+    {
+        "id": "c4603760d9ebb74e",
+        "type": "debug",
+        "z": "eb7364ef3ca37b14",
+        "name": "Message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "92776cb2c07e3e53",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Set Nano GPT Prompt and URL",
+        "rules": [
+            {
+                "t": "change",
+                "p": "url",
+                "pt": "msg",
+                "from": "CHATORIMMAGE",
+                "fromt": "str",
+                "to": "urlType.TalkToGPT",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 535,
+        "y": 480,
+        "wires": [
+            [
+                "a432d938e76ef66b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "21aa38607fc3fdcd",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Set Nano GPT Message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nanochatpayload.messages",
+                "pt": "msg",
+                "to": "payload.messages",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanochatpayload.model",
+                "pt": "msg",
+                "to": "payload.model",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "nanochatpayload.model",
+                "pt": "msg",
+                "from": "-nano",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "ogpayload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "nanochatpayload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 615,
+        "y": 440,
+        "wires": [
+            [
+                "78975fa286aca3ae"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a432d938e76ef66b",
+        "type": "switch",
+        "z": "eb7364ef3ca37b14",
+        "name": "Title Or Not",
+        "property": "payload.stream",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 575,
+        "y": 460,
+        "wires": [
+            [
+                "21aa38607fc3fdcd"
+            ],
+            [
+                "2cc12c9dee13e216"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b950a8a2736bfdb8",
+        "type": "switch",
+        "z": "eb7364ef3ca37b14",
+        "name": "GPT or Gemini",
+        "property": "payload.model",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "gemini",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 495,
+        "y": 460,
+        "wires": [
+            [
+                "796b1b2ed64ad5e1"
+            ],
+            [
+                "92776cb2c07e3e53"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "796b1b2ed64ad5e1",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Set Nano GPT Prompt and URL",
+        "rules": [
+            {
+                "t": "change",
+                "p": "url",
+                "pt": "msg",
+                "from": "CHATORIMMAGE",
+                "fromt": "str",
+                "to": "urlType.TalkToGemini",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 535,
+        "y": 440,
+        "wires": [
+            [
+                "a432d938e76ef66b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2cc12c9dee13e216",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Set Nano GPT Message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nanochatpayload.messages",
+                "pt": "msg",
+                "to": "payload.messages",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanochatpayload.model",
+                "pt": "msg",
+                "to": "payload.model",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "nanochatpayload.model",
+                "pt": "msg",
+                "from": "-nano",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "ogpayload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanotitlepayload",
+                "pt": "msg",
+                "to": "nanochatpayload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "nanochatpayload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanotitlepayload.prompt",
+                "pt": "msg",
+                "to": "nanotitlepayload.messages[0].content",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "nanotitlepayload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 615,
+        "y": 480,
+        "wires": [
+            [
+                "ae2223e98733aa5c"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "78975fa286aca3ae",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 655,
+        "y": 440,
+        "wires": [
+            [
+                "100b3923e58aceea"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "c78092bd65f9c4d8",
+        "type": "http response",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "Transfer-Encoding": "chunked"
+        },
+        "x": 895,
+        "y": 480,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "100b3923e58aceea",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "NanoCost",
+        "func": "\n\n// Define a regex pattern to match the content between <NanoGPT> and </NanoGPT>\nconst nanoGptPattern = /<NanoGPT>(.*?)<\\/NanoGPT>/;\n\n// Use the regex pattern to find the content and extract it\nconst match = msg.payload.match(nanoGptPattern);\n\nif (match) {\n    // Extract the content between the tags\n    const nanoCostContent = match[1].trim();\n    \n    // Set msg.nanocost with the extracted content\n    msg.nanocost = nanoCostContent;\n    \n    // Remove the <NanoGPT>...</NanoGPT> part from msg.payload\n    msg.payload = msg.payload.replace(nanoGptPattern, '').trim();\n\n\n} else {\n    // If no match is found, handle it accordingly\n\n}\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 695,
+        "y": 440,
+        "wires": [
+            [
+                "c6b81b5b22b26b79"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "89098f3c23e6ded1",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/check-nano-balance",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 815,
+        "y": 440,
+        "wires": [
+            [
+                "9361f175eea2e633"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "49334a46d64de969",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "headersBackup",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoresponse",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 775,
+        "y": 440,
+        "wires": [
+            [
+                "89098f3c23e6ded1"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "c6b81b5b22b26b79",
+        "type": "json",
+        "z": "eb7364ef3ca37b14",
+        "name": "nanocost",
+        "property": "nanocost",
+        "action": "",
+        "pretty": false,
+        "x": 735,
+        "y": 440,
+        "wires": [
+            [
+                "49334a46d64de969"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "416a2d5d6fe14839",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "response",
+                "pt": "msg",
+                "to": "\"RESPONSE\\n\\n\\n🪙 NanoBalance: BAL 🪙\\n\\n\\n🪙 NanoCost: CST 🪙\\n\\n\\n💸 NanoDepositAddress: ADD 💸\"",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "RESPONSE",
+                "fromt": "str",
+                "to": "nanoresponse",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "BAL",
+                "fromt": "str",
+                "to": "payload.balance",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "CST",
+                "fromt": "str",
+                "to": "nanocost.nanoCost",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "ADD",
+                "fromt": "str",
+                "to": "payload.nanoDepositAddress",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoresponse",
+                "pt": "msg",
+                "to": "response",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "response",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 935,
+        "y": 400,
+        "wires": [
+            [
+                "39c183a026a9e56c"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9361f175eea2e633",
+        "type": "switch",
+        "z": "eb7364ef3ca37b14",
+        "name": "Balance",
+        "property": "payload.balance",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "gte",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 855,
+        "y": 440,
+        "wires": [
+            [
+                "416a2d5d6fe14839"
+            ],
+            [
+                "a284aa87d432b230"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "8e4ee402b5b2adcd",
+        "type": "http response",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1065,
+        "y": 440,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "78e6029d0f5619e5",
+        "type": "debug",
+        "z": "eb7364ef3ca37b14",
+        "name": "Title",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f3c6516d3a668e41",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "response",
+                "pt": "msg",
+                "to": "\"RESPONSE\\n\\n\\n🪙 NanoBalance: BAL 🪙\\n\\n\\n🪙 NanoCost: CST 🪙\"",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "RESPONSE",
+                "fromt": "str",
+                "to": "nanoresponse",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "BAL",
+                "fromt": "str",
+                "to": "payload.balance",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "CST",
+                "fromt": "str",
+                "to": "nanocost.nanoCost",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "ADD",
+                "fromt": "str",
+                "to": "payload.nanoDepositAddress",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoresponse",
+                "pt": "msg",
+                "to": "response",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "response",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 935,
+        "y": 440,
+        "wires": [
+            [
+                "39c183a026a9e56c"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "39c183a026a9e56c",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "nanoresponse",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 985,
+        "y": 440,
+        "wires": [
+            [
+                "9f56a4cf17c0df86"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ae2223e98733aa5c",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 655,
+        "y": 480,
+        "wires": [
+            [
+                "0f739cb4f785dea1"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "0f739cb4f785dea1",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "NanoCost",
+        "func": "\n\n// Define a regex pattern to match the content between <NanoGPT> and </NanoGPT>\nconst nanoGptPattern = /<NanoGPT>(.*?)<\\/NanoGPT>/;\n\n// Use the regex pattern to find the content and extract it\nconst match = msg.payload.match(nanoGptPattern);\n\nif (match) {\n    // Extract the content between the tags\n    const nanoCostContent = match[1].trim();\n    \n    // Set msg.nanocost with the extracted content\n    msg.nanocost = nanoCostContent;\n    \n    // Remove the <NanoGPT>...</NanoGPT> part from msg.payload\n    msg.payload = msg.payload.replace(nanoGptPattern, '').trim();\n\n\n} else {\n    // If no match is found, handle it accordingly\n\n}\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 695,
+        "y": 480,
+        "wires": [
+            [
+                "93b15ce21402a90d"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "84b66d0a24ace2c6",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/check-nano-balance",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 815,
+        "y": 480,
+        "wires": [
+            [
+                "a19baa456d53d55f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ddb8881a6c1ef5b6",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "headersBackup",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoresponse",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 775,
+        "y": 480,
+        "wires": [
+            [
+                "84b66d0a24ace2c6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "93b15ce21402a90d",
+        "type": "json",
+        "z": "eb7364ef3ca37b14",
+        "name": "nanocost",
+        "property": "nanocost",
+        "action": "",
+        "pretty": false,
+        "x": 735,
+        "y": 480,
+        "wires": [
+            [
+                "ddb8881a6c1ef5b6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a19baa456d53d55f",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Response Template Title",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"choices\":[{\"finish_reason\":\"stop\",\"index\":0,\"message\":{\"content\":\"CONTENT\",\"role\":\"assistant\"},\"logprobs\":null}],\"created\":1677664795,\"id\":\"39e4398f-979c-4058-b0b7-1a3ec236083e\",\"model\":\"gpt-4o-mini-nano\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":17,\"prompt_tokens\":57,\"total_tokens\":74}}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.choices[0].message.content",
+                "pt": "msg",
+                "to": "nanoresponse",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 855,
+        "y": 480,
+        "wires": [
+            [
+                "78e6029d0f5619e5",
+                "c78092bd65f9c4d8"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5205a4b0cf386896",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers[\"x-api-key\"]",
+                "pt": "msg",
+                "to": "req.headers.authorization",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "headers[\"x-api-key\"]",
+                "pt": "msg",
+                "from": "Bearer ",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headersBackup",
+                "pt": "msg",
+                "to": "headers",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 375,
+        "y": 460,
+        "wires": [
+            [
+                "1169b407c08c2cf6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "4ea98c462fade828",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Msg Fix",
+        "func": "// Ensure msg.payload.messages is an array and not empty\nif (Array.isArray(msg.payload.messages) && msg.payload.messages.length > 0) {\n    // Get the last message object in the array\n    const lastMessage = msg.payload.messages[msg.payload.messages.length - 1];\n\n    // Check if the last message has a 'content' field\n    if (lastMessage && lastMessage.content) {\n        // Set the 'prompt' field to the 'content' of the last message\n        msg.nanochatpayload = {\n            prompt: lastMessage.content\n        };\n    } else {\n        // Handle the case where 'content' is not present\n        msg.nanochatpayload = {\n            prompt: \"No content found in the last message\"\n        };\n    }\n} else {\n    // Handle the case where 'messages' is not an array or is empty\n    msg.nanochatpayload = {\n        prompt: \"No messages found\"\n    };\n}\n\n// Return the modified message\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 455,
+        "y": 460,
+        "wires": [
+            [
+                "b950a8a2736bfdb8"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9f56a4cf17c0df86",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Line Breaks",
+        "func": "var payload = msg.payload.replace(/(?:\\r\\n|\\r|\\n)/g, \"LINEBREAKHERE\");\nmsg.payload = payload;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1025,
+        "y": 440,
+        "wires": [
+            [
+                "8e4ee402b5b2adcd",
+                "c4603760d9ebb74e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a284aa87d432b230",
+        "type": "delay",
+        "z": "eb7364ef3ca37b14",
+        "name": "Rate Limit Balance",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "hour",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 2,
+        "x": 895,
+        "y": 440,
+        "wires": [
+            [
+                "f3c6516d3a668e41"
+            ],
+            [
+                "6324f28132ade5b5"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "6324f28132ade5b5",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "response",
+                "pt": "msg",
+                "to": "\"RESPONSE\"",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "response",
+                "pt": "msg",
+                "from": "RESPONSE",
+                "fromt": "str",
+                "to": "nanoresponse",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoresponse",
+                "pt": "msg",
+                "to": "response",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "response",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 935,
+        "y": 480,
+        "wires": [
+            [
+                "39c183a026a9e56c"
+            ]
+        ],
+        "l": false
+    }
+]
