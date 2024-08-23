@@ -58,7 +58,6 @@ class Pipe:
                         "name": f'{self.valves.NAME_PREFIX}{model["name"] if "name" in model else model["id"]}',
                     }
                     for model in models["data"]
-                    if "gpt" in model["id"]
                 ]
 
             except Exception as e:
