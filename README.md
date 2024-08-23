@@ -1,6 +1,6 @@
 # Flow Description: Integrating Nano-GPT with OpenWebUI
 
-This Node-RED flow and fuction Pipe enables seamless interaction between **Nano-GPT.com** and **OpenWebUI**.
+This Node-RED flow and fuction Pipe that enables interaction between **Nano-GPT.com** and **OpenWebUI**.
 
 ## Key Features:
 
