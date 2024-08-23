@@ -1,6 +1,6 @@
 """
 title: Node Red Nano GPT Pipe
-author: Elliott Groves
+author: Orciotrox
 node red flow:
 Based On:
     title: OpenAI Proxy Pipe
