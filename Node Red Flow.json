@@ -55,10 +55,10 @@
         "to": "",
         "reg": false,
         "x": 415,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
-                "4ea98c462fade828"
+                "f1fad8f6d7ab2814"
             ]
         ],
         "l": false
@@ -231,7 +231,7 @@
         "type": "function",
         "z": "eb7364ef3ca37b14",
         "name": "OpenWebUIPayload",
-        "func": "\n\n// Ensure msg.OpenWebUIPayload is defined and initialize data as an array if necessary\nif (!msg.OpenWebUIPayload) {\n    msg.OpenWebUIPayload = {};\n}\n\n// Initialize data as an array if it is not already\nif (!Array.isArray(msg.OpenWebUIPayload.data)) {\n    msg.OpenWebUIPayload.data = [];\n}\n\n// Ensure msg.nanotext is defined and is an object\nif (msg.nanotext && typeof msg.nanotext === 'object') {\n    // Initialize a set of existing model IDs for quick lookup\n    let existingModels = new Set(msg.OpenWebUIPayload.data.map(item => item.id));\n\n    // Iterate over each key in msg.nanotext\n    for (const key in msg.nanotext) {\n        if (msg.nanotext.hasOwnProperty(key)) {\n            const model = msg.nanotext[key].model;\n            const id = model + \"-nano\"; \n\n            // Check if the model already exists in OpenWebUIPayload.data\n            if (!existingModels.has(model)) {\n                // If not, push the new entry\n                msg.OpenWebUIPayload.data.push({\n                    id: id,\n                    object: \"model\",\n                    created: 1721172717,\n                    owned_by: \"system\"\n                    // Add any other properties you might need from msg.nanotext\n                    //name: msg.nanotext[key].name,\n                    //description: msg.nanotext[key].description,\n                    //cost: msg.nanotext[key].cost,\n                    //costEstimate: msg.nanotext[key].costEstimate,\n                    //label: msg.nanotext[key].label,\n                    //labelVariant: msg.nanotext[key].labelVariant,\n                    //visible: msg.nanotext[key].visible\n                });\n                // Update the set of existing models\n                existingModels.add(model);\n            }\n        }\n    }\n} else {\n    node.warn(\"msg.nanotext is not defined or is not an object\");\n}\n\n// Return the modified message object\nreturn msg;\n",
+        "func": "\n\n// Ensure msg.OpenWebUIPayload is defined and initialize data as an array if necessary\nif (!msg.OpenWebUIPayload) {\n    msg.OpenWebUIPayload = {};\n}\n\n// Initialize data as an array if it is not already\nif (!Array.isArray(msg.OpenWebUIPayload.data)) {\n    msg.OpenWebUIPayload.data = [];\n}\n\n// Ensure msg.nanotext is defined and is an object\nif (msg.nanotext && typeof msg.nanotext === 'object') {\n    // Initialize a set of existing model IDs for quick lookup\n    let existingModels = new Set(msg.OpenWebUIPayload.data.map(item => item.id));\n\n    // Iterate over each key in msg.nanotext\n    for (const key in msg.nanotext) {\n        if (msg.nanotext.hasOwnProperty(key)) {\n            const model = msg.nanotext[key].model;\n            const id = model + \"-nano-chat\"; \n\n            // Check if the model already exists in OpenWebUIPayload.data\n            if (!existingModels.has(model)) {\n                // If not, push the new entry\n                msg.OpenWebUIPayload.data.push({\n                    id: id,\n                    object: \"model\",\n                    created: 1721172717,\n                    owned_by: \"system\"\n                    // Add any other properties you might need from msg.nanotext\n                    //name: msg.nanotext[key].name,\n                    //description: msg.nanotext[key].description,\n                    //cost: msg.nanotext[key].cost,\n                    //costEstimate: msg.nanotext[key].costEstimate,\n                    //label: msg.nanotext[key].label,\n                    //labelVariant: msg.nanotext[key].labelVariant,\n                    //visible: msg.nanotext[key].visible\n                });\n                // Update the set of existing models\n                existingModels.add(model);\n            }\n        }\n    }\n}\nif (msg.nanoimage && typeof msg.nanoimage === 'object') {\n    // Initialize a set of existing model IDs for quick lookup\n    let existingimageModels = new Set(msg.OpenWebUIPayload.data.map(item => item.id));\n\n    // Iterate over each key in msg.nanotext\n    for (const key in msg.nanoimage) {\n        if (msg.nanoimage.hasOwnProperty(key)) {\n            const model = msg.nanoimage[key].model;\n            const id = model + \"-nano-image\"; \n\n            // Check if the model already exists in OpenWebUIPayload.data\n            if (!existingimageModels.has(model)) {\n                // If not, push the new entry\n                msg.OpenWebUIPayload.data.push({\n                    id: id,\n                    object: \"model\",\n                    created: 1721172717,\n                    owned_by: \"system\"\n                    // Add any other properties you might need from msg.nanotext\n                    //name: msg.nanotext[key].name,\n                    //description: msg.nanotext[key].description,\n                    //cost: msg.nanotext[key].cost,\n                    //costEstimate: msg.nanotext[key].costEstimate,\n                    //label: msg.nanotext[key].label,\n                    //labelVariant: msg.nanotext[key].labelVariant,\n                    //visible: msg.nanotext[key].visible\n                });\n                // Update the set of existing models\n                existingimageModels.add(model);\n            }\n        }\n    }\n} else {\n    node.warn(\"msg.nanotext is not defined or is not an object\");\n}\n\n// Return the modified message object\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -325,7 +325,7 @@
         "upload": true,
         "swaggerDoc": "",
         "x": 290,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "5205a4b0cf386896"
@@ -345,7 +345,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1160,
+        "x": 1240,
         "y": 440,
         "wires": []
     },
@@ -370,7 +370,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 535,
+        "x": 615,
         "y": 480,
         "wires": [
             [
@@ -403,7 +403,7 @@
                 "t": "change",
                 "p": "nanochatpayload.model",
                 "pt": "msg",
-                "from": "-nano",
+                "from": "-nano-chat",
                 "fromt": "str",
                 "to": "",
                 "tot": "str"
@@ -428,7 +428,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 615,
+        "x": 695,
         "y": 440,
         "wires": [
             [
@@ -455,7 +455,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 575,
+        "x": 655,
         "y": 460,
         "wires": [
             [
@@ -487,7 +487,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 495,
+        "x": 575,
         "y": 460,
         "wires": [
             [
@@ -520,7 +520,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 535,
+        "x": 615,
         "y": 440,
         "wires": [
             [
@@ -553,7 +553,7 @@
                 "t": "change",
                 "p": "nanochatpayload.model",
                 "pt": "msg",
-                "from": "-nano",
+                "from": "-nano-chat",
                 "fromt": "str",
                 "to": "",
                 "tot": "str"
@@ -597,7 +597,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 615,
+        "x": 695,
         "y": 480,
         "wires": [
             [
@@ -622,7 +622,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 655,
+        "x": 735,
         "y": 440,
         "wires": [
             [
@@ -640,7 +640,7 @@
         "headers": {
             "Transfer-Encoding": "chunked"
         },
-        "x": 895,
+        "x": 975,
         "y": 480,
         "wires": [],
         "l": false
@@ -657,7 +657,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 695,
+        "x": 775,
         "y": 440,
         "wires": [
             [
@@ -682,7 +682,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 815,
+        "x": 895,
         "y": 440,
         "wires": [
             [
@@ -722,7 +722,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 775,
+        "x": 855,
         "y": 440,
         "wires": [
             [
@@ -739,7 +739,7 @@
         "property": "nanocost",
         "action": "",
         "pretty": false,
-        "x": 735,
+        "x": 815,
         "y": 440,
         "wires": [
             [
@@ -815,7 +815,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 935,
+        "x": 1015,
         "y": 400,
         "wires": [
             [
@@ -846,7 +846,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 855,
+        "x": 935,
         "y": 440,
         "wires": [
             [
@@ -865,7 +865,7 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1065,
+        "x": 1145,
         "y": 440,
         "wires": [],
         "l": false
@@ -883,7 +883,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1030,
+        "x": 1110,
         "y": 480,
         "wires": []
     },
@@ -954,7 +954,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 935,
+        "x": 1015,
         "y": 440,
         "wires": [
             [
@@ -982,7 +982,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 985,
+        "x": 1065,
         "y": 440,
         "wires": [
             [
@@ -1007,7 +1007,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 655,
+        "x": 735,
         "y": 480,
         "wires": [
             [
@@ -1028,7 +1028,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 695,
+        "x": 775,
         "y": 480,
         "wires": [
             [
@@ -1053,7 +1053,7 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 815,
+        "x": 895,
         "y": 480,
         "wires": [
             [
@@ -1093,7 +1093,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 775,
+        "x": 855,
         "y": 480,
         "wires": [
             [
@@ -1110,7 +1110,7 @@
         "property": "nanocost",
         "action": "",
         "pretty": false,
-        "x": 735,
+        "x": 815,
         "y": 480,
         "wires": [
             [
@@ -1150,7 +1150,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 855,
+        "x": 935,
         "y": 480,
         "wires": [
             [
@@ -1203,7 +1203,7 @@
         "to": "",
         "reg": false,
         "x": 375,
-        "y": 460,
+        "y": 480,
         "wires": [
             [
                 "1169b407c08c2cf6"
@@ -1223,11 +1223,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 455,
-        "y": 460,
+        "x": 495,
+        "y": 480,
         "wires": [
             [
-                "b950a8a2736bfdb8"
+                "24d6d3ee5b967450"
             ]
         ],
         "l": false
@@ -1244,7 +1244,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1025,
+        "x": 1105,
         "y": 440,
         "wires": [
             [
@@ -1271,7 +1271,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 2,
-        "x": 895,
+        "x": 975,
         "y": 440,
         "wires": [
             [
@@ -1323,11 +1323,1332 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 935,
+        "x": 1015,
         "y": 480,
         "wires": [
             [
                 "39c183a026a9e56c"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2ca4172d45d74c89",
+        "type": "debug",
+        "z": "eb7364ef3ca37b14",
+        "name": "Image Generate",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "8c7e121a3b7393bd",
+        "type": "http in",
+        "z": "eb7364ef3ca37b14",
+        "name": "Image Generate",
+        "url": "/generateImage",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 320,
+        "y": 600,
+        "wires": [
+            [
+                "2c2f4e03d2d3f787"
+            ]
+        ]
+    },
+    {
+        "id": "44fe30c5dcb2f8b3",
+        "type": "http in",
+        "z": "eb7364ef3ca37b14",
+        "name": "Image Models",
+        "url": "/imagemodels",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "952754b32ab1c09e"
+            ]
+        ]
+    },
+    {
+        "id": "cbd37d3c580a671c",
+        "type": "debug",
+        "z": "eb7364ef3ca37b14",
+        "name": "Image Models",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "952754b32ab1c09e",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "OpenAI",
+        "rules": [
+            {
+                "t": "set",
+                "p": "openaiModels",
+                "pt": "msg",
+                "to": "{\"object\":\"list\",\"data\":[{\"id\":\"gpt-3.5-turbo\",\"object\":\"model\",\"created\":1677610602,\"owned_by\":\"openai\"},{\"id\":\"gpt-3.5-turbo-1106\",\"object\":\"model\",\"created\":1698959748,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-16k\",\"object\":\"model\",\"created\":1683758102,\"owned_by\":\"openai-internal\"},{\"id\":\"gpt-4o-mini-2024-07-18\",\"object\":\"model\",\"created\":1721172717,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-instruct-0914\",\"object\":\"model\",\"created\":1694122472,\"owned_by\":\"system\"},{\"id\":\"gpt-4o-mini\",\"object\":\"model\",\"created\":1721172741,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-0125\",\"object\":\"model\",\"created\":1706048358,\"owned_by\":\"system\"},{\"id\":\"gpt-3.5-turbo-instruct\",\"object\":\"model\",\"created\":1692901427,\"owned_by\":\"system\"}]}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "nano-gtpToken",
+                "pt": "msg",
+                "to": "req.rawHeaders[3]",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "nano-gtpToken",
+                "pt": "msg",
+                "from": "Bearer ",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 415,
+        "y": 300,
+        "wires": [
+            [
+                "8be16e4b7c898b24"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "8be16e4b7c898b24",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/models",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 455,
+        "y": 300,
+        "wires": [
+            [
+                "e68b18f7a9aca537"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "e68b18f7a9aca537",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano Models",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retry",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanotext",
+                "pt": "msg",
+                "to": "payload.models.text",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoimage",
+                "pt": "msg",
+                "to": "payload.models.image",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 495,
+        "y": 300,
+        "wires": [
+            [
+                "306412a65c5768d5"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "eb53e456ad306f27",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "OpenWebUIPayload",
+        "func": "\n\n// Ensure msg.OpenWebUIPayload is defined and initialize data as an array if necessary\nif (!msg.OpenWebUIPayload) {\n    msg.OpenWebUIPayload = {};\n}\n\n// Initialize data as an array if it is not already\nif (!Array.isArray(msg.OpenWebUIPayload.data)) {\n    msg.OpenWebUIPayload.data = [];\n}\n\n// Ensure msg.nanotext is defined and is an object\nif (msg.nanoimage && typeof msg.nanoimage === 'object') {\n    // Initialize a set of existing model IDs for quick lookup\n    let existingimageModels = new Set(msg.OpenWebUIPayload.data.map(item => item.id));\n\n    // Iterate over each key in msg.nanotext\n    for (const key in msg.nanoimage) {\n        if (msg.nanoimage.hasOwnProperty(key)) {\n            const model = msg.nanoimage[key].model;\n            const id = model + \"-nano-image\"; \n\n            // Check if the model already exists in OpenWebUIPayload.data\n            if (!existingimageModels.has(model)) {\n                // If not, push the new entry\n                msg.OpenWebUIPayload.data.push({\n                    id: id,\n                    object: \"model\",\n                    created: 1721172717,\n                    owned_by: \"system\"\n                    // Add any other properties you might need from msg.nanotext\n                    //name: msg.nanotext[key].name,\n                    //description: msg.nanotext[key].description,\n                    //cost: msg.nanotext[key].cost,\n                    //costEstimate: msg.nanotext[key].costEstimate,\n                    //label: msg.nanotext[key].label,\n                    //labelVariant: msg.nanotext[key].labelVariant,\n                    //visible: msg.nanotext[key].visible\n                });\n                // Update the set of existing models\n                existingimageModels.add(model);\n            }\n        }\n    }\n} else {\n    node.warn(\"msg.nanotext is not defined or is not an object\");\n}\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 575,
+        "y": 300,
+        "wires": [
+            [
+                "c6625fc0f834e16d"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "306412a65c5768d5",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "OpenWebUIPayload.object",
+                "pt": "msg",
+                "to": "list",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 535,
+        "y": 300,
+        "wires": [
+            [
+                "eb53e456ad306f27"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f4f59b567a09e57e",
+        "type": "http response",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "c6625fc0f834e16d",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "OpenWebUIPayload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 615,
+        "y": 300,
+        "wires": [
+            [
+                "f4f59b567a09e57e",
+                "cbd37d3c580a671c"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2c2f4e03d2d3f787",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers[\"x-api-key\"]",
+                "pt": "msg",
+                "to": "req.headers.authorization",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "headers[\"x-api-key\"]",
+                "pt": "msg",
+                "from": "Bearer ",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Content-Type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headersBackup",
+                "pt": "msg",
+                "to": "headers",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://nano-gpt.com/api/generate-image",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "imagePayload",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoModels",
+                "pt": "msg",
+                "to": "{\"models\":{\"text\":{\"gpt-4o-2024-08-06\":{\"name\":\"GPT 4o\",\"model\":\"gpt-4o-2024-08-06\",\"description\":\"OpenAI's most advanced model. It matches GPT-4 Turbo performance on text in English and code, with significant improvement on text in non-English languages, while also being much faster and 50% cheaper.\",\"cost\":\"Average cost: 0.015 Nano\",\"costEstimate\":0.015,\"labelVariant\":\"outline\",\"label\":\"Recommended\",\"visible\":true},\"claude-3-5-sonnet-20240620\":{\"name\":\"Claude 3.5 Sonnet\",\"model\":\"claude-3-5-sonnet-20240620\",\"description\":\"Anthropic's most most intelligent model, offering even better results on many subjects than GPT-4o.\",\"cost\":\"Average cost: 0.01 Nano\",\"costEstimate\":0.01,\"visible\":true},\"gemini-1.5-pro-exp\":{\"name\":\"Gemini 1.5 Pro\",\"model\":\"gemini-1.5-pro-exp\",\"description\":\"Google's next-generation model with a breakthrough 1 million context window. Comparable to GPT-4o.\",\"cost\":\"Average cost: 0.001 Nano\",\"costEstimate\":0.001,\"label\":\"New 🎉\",\"visible\":true},\"gemini-1.5-pro-001\":{\"name\":\"Gemini 1.5 Pro\",\"model\":\"gemini-1.5-pro-001\",\"description\":\"Google's next-generation model with a breakthrough 1 million context window. Comparable to GPT-4o.\",\"cost\":\"Average cost: 0.01 Nano\",\"costEstimate\":0.01,\"visible\":false},\"accounts/fireworks/models/llama-v3p1-405b-instruct\":{\"name\":\"Llama 3.1 Large\",\"model\":\"accounts/fireworks/models/llama-v3p1-405b-instruct\",\"description\":\"Meta's largest, newest and most capable Llama model. Competitive with GPT-4o and Claude 3.5 Sonnet.\",\"cost\":\"Average cost: 0.005 Nano\",\"costEstimate\":0.005,\"visible\":true},\"chatgpt-4o-latest\":{\"name\":\"ChatGPT 4o\",\"model\":\"chatgpt-4o-latest\",\"description\":\"OpenAI's latest and most advanced model. Better than GPT-4o at the same price, but generates text more slowly.\",\"cost\":\"Average cost: 0.015 Nano\",\"costEstimate\":0.015,\"label\":\"New 🎉\",\"visible\":true},\"accounts/fireworks/models/llama-v3p1-70b-instruct\":{\"name\":\"Llama 3.1 Medium\",\"model\":\"accounts/fireworks/models/llama-v3p1-70b-instruct\",\"description\":\"Meta's updated version of their medium Llama model. Slightly lesser performance than Llama Large, but cheaper.\",\"cost\":\"Average cost: 0.002 Nano\",\"costEstimate\":0.002,\"visible\":true},\"llama-3.1-70b-instruct\":{\"name\":\"Llama 3.1 Medium\",\"model\":\"llama-3.1-70b-instruct\",\"description\":\"Meta's newest GPT-4 level model. Cheaper than GPT-4 and Claude 3, with similar performance according to most.\",\"cost\":\"Average cost: 0.005 Nano\",\"costEstimate\":0.005,\"labelVariant\":\"transparent\",\"visible\":false},\"gpt-4o-mini\":{\"name\":\"GPT 4o mini\",\"model\":\"gpt-4o-mini\",\"description\":\"OpenAI's most cost-efficient small model. Cheaper and smarter than GPT-3.5 (the original ChatGPT), but less performant than gpt-4o\",\"cost\":\"Average cost: 0.007 Nano\",\"costEstimate\":0.007,\"visible\":true},\"claude-3-opus-20240229\":{\"name\":\"Claude 3 Opus\",\"model\":\"claude-3-opus-20240229\",\"description\":\"Anthropic's flagship model, outperforming GPT-4 on most benchmarks.\",\"cost\":\"Average cost: 0.10 Nano\",\"costEstimate\":0.1,\"visible\":true},\"gemini-1.5-flash-001\":{\"name\":\"Gemini 1.5 Flash\",\"model\":\"gemini-1.5-flash-001\",\"description\":\"Google's fastest multimodal model with great performance for diverse, repetitive tasks and a 1 million context window.\",\"cost\":\"Average cost: 0.001 Nano\",\"costEstimate\":0.001,\"visible\":true},\"llama-3.1-sonar-huge-128k-online\":{\"name\":\"Sonar Online Huge\",\"model\":\"llama-3.1-sonar-huge-128k-online\",\"description\":\"The bigger version of the Perplexity model that is able to browse the web and access up-to-date information.\",\"cost\":\"Average cost: 0.04 Nano\",\"costEstimate\":0.04,\"label\":\"Web Access\",\"labelVariant\":\"outline\",\"visible\":true},\"llama-3.1-sonar-large-128k-online\":{\"name\":\"Sonar Online\",\"model\":\"llama-3.1-sonar-large-128k-online\",\"description\":\"A Perplexity model that is able to browse the web and access up-to-date information.\",\"cost\":\"Average cost: 0.01 Nano\",\"costEstimate\":0.01,\"label\":\"Web Access\",\"labelVariant\":\"outline\",\"visible\":true},\"gpt-4-turbo-preview\":{\"name\":\"GPT 4 Turbo\",\"model\":\"gpt-4-turbo-preview\",\"description\":\"Can take in the largest messages (up to 300 pages of context), and all round seen as one of the best in class models.\",\"cost\":\"Average cost: 0.05 Nano\",\"costEstimate\":0.05,\"visible\":false},\"gpt-4o\":{\"name\":\"GPT 4o\",\"model\":\"gpt-4o\",\"description\":\"OpenAI's most advanced model. It matches GPT-4 Turbo performance on text in English and code, with significant improvement on text in non-English languages, while also being much faster and 50% cheaper.\",\"cost\":\"Average cost: 0.025 Nano\",\"costEstimate\":0.025,\"labelVariant\":\"outline\",\"label\":\"Recommended\",\"visible\":false},\"gpt-3.5-turbo\":{\"name\":\"GPT 3.5 Turbo\",\"model\":\"gpt-3.5-turbo\",\"description\":\"Older model. Brought ChatGPT to the mainstream, seen as dated nowadays. 90% cheaper than GPT-4-Turbo, recommended for very simple tasks.\",\"cost\":\"Average cost: 0.007 Nano\",\"costEstimate\":0.007,\"visible\":false}},\"image\":{\"dall-e-3\":{\"name\":\"DALL-E-3\",\"model\":\"dall-e-3\",\"engine\":\"dalle\",\"description\":\"The current golden standard in image generation.\",\"cost\":{\"1024x1024\":0.04,\"1024x1792\":0.08,\"1792x1024\":0.08},\"label\":\"Default\",\"maxImages\":1,\"resolutions\":[{\"value\":\"1024x1024\"},{\"value\":\"1024x1792\",\"comment\":\"2x the price\"},{\"value\":\"1792x1024\",\"comment\":\"2x the price\"}]},\"dall-e-3-hd\":{\"name\":\"DALL-E-3 HD\",\"model\":\"dall-e-3-hd\",\"engine\":\"dalle\",\"description\":\"The current golden standard in image generation, now in HD quality.\",\"cost\":{\"1024x1024\":0.08,\"1024x1792\":0.12,\"1792x1024\":0.12},\"maxImages\":1,\"resolutions\":[{\"value\":\"1024x1024\"},{\"value\":\"1024x1792\",\"comment\":\"1.5x the price\"},{\"value\":\"1792x1024\",\"comment\":\"1.5x the price\"}]},\"flux-realism\":{\"name\":\"Flux Realism\",\"model\":\"flux-realism\",\"engine\":\"fal\",\"description\":\"Incredibly photorealistic image generation. Generate people, animals, landscapes that are hard to distinguish from reality.\",\"labelColor\":\"#38a3ec\",\"label\":\"New 🚀\",\"cost\":{\"768x1024\":0.04,\"512x512\":0.014,\"1024x1024\":0.053,\"576x1024\":0.03,\"1024x768\":0.04,\"1024x576\":0.03},\"maxImages\":1,\"resolutions\":[{\"value\":\"512x512\",\"comment\":\"Square\"},{\"value\":\"1024x1024\",\"comment\":\"Square HD\"},{\"value\":\"768x1024\",\"comment\":\"Portrait (3:4)\"},{\"value\":\"576x1024\",\"comment\":\"Portrait (9:16)\"},{\"value\":\"1024x768\",\"comment\":\"Landscape (4:3)\"},{\"value\":\"1024x576\",\"comment\":\"Landscape (16:9)\"}],\"numInferenceSteps\":28},\"flux-pro\":{\"name\":\"Flux Pro\",\"model\":\"flux-pro\",\"engine\":\"fal\",\"description\":\"Exceptional quality and prompt adherence. The most advanced version of the Flux range of models.\",\"labelColor\":\"#38a3ec\",\"label\":\"New 🚀\",\"cost\":{\"1024x1024\":0.055,\"1344x768\":0.055,\"768x1344\":0.055},\"maxImages\":1,\"resolutions\":[{\"value\":\"1024x1024\",\"comment\":\"Square (1:1)\"},{\"value\":\"1344x768\",\"comment\":\"Landscape (16:9)\"},{\"value\":\"768x1344\",\"comment\":\"Portrait (9:16)\"}],\"numInferenceSteps\":28,\"safetyParameter\":\"safety_tolerance\"},\"flux/schnell\":{\"name\":\"Flux Schnell\",\"model\":\"flux/schnell\",\"engine\":\"fal\",\"description\":\"Fast and high-quality image generation - the cheaper version of the Flux range of models.\",\"labelColor\":\"#38a3ec\",\"label\":\"New 🚀\",\"cost\":{\"1024x1024\":0.005,\"1344x768\":0.005,\"1792x768\":0.005,\"768x1024\":0.005,\"768x1344\":0.005,\"1088x896\":0.005,\"896x1088\":0.005},\"maxImages\":1,\"resolutions\":[{\"value\":\"1024x1024\",\"comment\":\"Square (1:1)\"},{\"value\":\"1344x768\",\"comment\":\"Landscape (16:9)\"},{\"value\":\"1792x768\",\"comment\":\"Ultrawide (21:9)\"},{\"value\":\"768x1344\",\"comment\":\"Portrait (9:16)\"},{\"value\":\"768x1792\",\"comment\":\"Ultratall (21:9)\"}],\"outputFormat\":\"png\",\"outputQuality\":90,\"numInferenceSteps\":4},\"realisticVisionV51_v51VAE_94301.safetensors\":{\"name\":\"Realistic Vision V5.1\",\"model\":\"realisticVisionV51_v51VAE_94301.safetensors\",\"engine\":\"novita\",\"description\":\"Realistic Vision generates realistic-looking humans. It can also generate realistic objects, animals and landscapes.\",\"labelColor\":\"#38a3ec\",\"cost\":{\"1024x1024\":0.0105,\"2048x2048\":0.0419,\"512x512\":0.0026},\"maxImages\":4,\"resolutions\":[{\"value\":\"512x512\",\"comment\":\"0.25x price\"},{\"value\":\"1024x1024\"},{\"value\":\"2048x2048\",\"comment\":\"4x price\"}],\"sampler\":\"DPM++ 2S a Karras\",\"negativePrompt\":\"(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck\"},\"uberRealisticPornMerge_urpmv12_4979.safetensors\":{\"name\":\"Uber Realistic\",\"model\":\"uberRealisticPornMerge_urpmv12_4979.safetensors\",\"engine\":\"novita\",\"description\":\"Generates realistic-looking NSFW images.\",\"cost\":{\"1024x1024\":0.0105,\"2048x2048\":0.0419,\"512x512\":0.0026},\"maxImages\":4,\"resolutions\":[{\"value\":\"512x512\",\"comment\":\"0.25x price\"},{\"value\":\"1024x1024\"},{\"value\":\"2048x2048\",\"comment\":\"4x price\"}],\"sampler\":\"DPM++ 2M Karras\",\"negativePrompt\":\"animated, cartoon, ((blurry)), duplicate\",\"label\":\"NSFW\",\"labelColor\":\"red\"},\"sd3_base_medium.safetensors\":{\"name\":\"Stable Diffusion 3 Medium\",\"model\":\"sd3_base_medium.safetensors\",\"engine\":\"novita\",\"description\":\"Excels at photorealism, typography, and prompt following. Works best in 1024x1024.\",\"labelColor\":\"#38a3ec\",\"cost\":{\"1024x1024\":0.0105,\"2048x2048\":0.0419,\"512x512\":0.0026},\"maxImages\":4,\"resolutions\":[{\"value\":\"512x512\",\"comment\":\"0.25x price\"},{\"value\":\"1024x1024\"},{\"value\":\"2048x2048\",\"comment\":\"4x price\"}],\"sampler\":\"FlowMatchEuler\",\"negativePrompt\":\"\"},\"dreamshaper_8_93211.safetensors\":{\"name\":\"Dreamshaper XL\",\"model\":\"dreamshaper_8_93211.safetensors\",\"engine\":\"novita\",\"description\":\"Dreamshaper generates realistic and anime/illustration-style images, and is better suited to sci-fi and fantasy scenes.\",\"labelColor\":\"#38a3ec\",\"cost\":{\"1024x1024\":0.0105,\"2048x2048\":0.0419,\"512x512\":0.0026},\"maxImages\":4,\"resolutions\":[{\"value\":\"512x512\",\"comment\":\"0.25x price\"},{\"value\":\"1024x1024\"},{\"value\":\"2048x2048\",\"comment\":\"4x price\"}],\"sampler\":\"DPM++ 2S a Karras\",\"negativePrompt\":\"ugly, deformed, malformed, lowres, mutant, mutated, disfigured, compressed, noise, artifacts, dithering, simple, watermark, text, font, signage, collage, pixel\"},\"revAnimated_v122.safetensors\":{\"name\":\"ReV Animated\",\"model\":\"revAnimated_v122.safetensors\",\"engine\":\"novita\",\"description\":\"ReV Animated specialized in fantasy, anime and semi-realistic landscapes.\",\"labelColor\":\"#38a3ec\",\"cost\":{\"1024x1024\":0.0105,\"2048x2048\":0.0419,\"512x512\":0.0026},\"maxImages\":4,\"resolutions\":[{\"value\":\"512x512\",\"comment\":\"0.25x price\"},{\"value\":\"1024x1024\"},{\"value\":\"2048x2048\",\"comment\":\"4x price\"}],\"sampler\":\"DPM++ 2M Karras\",\"negativePrompt\":\"3d, cartoon, anime, sketches, (worst quality, bad quality, child, cropped:1.4) ((monochrome)), ((grayscale)),  (bad-hands-5:1.0), (badhandv4:1.0), (easynegative:0.8),  (bad-artist-anime:0.8), (bad-artist:0.8), (bad_prompt:0.8), (bad-picture-chill-75v:0.8), (bad_prompt_version2:0.8),  (bad_quality:0.8)\"}}}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 435,
+        "y": 600,
+        "wires": [
+            [
+                "cc42c49216e085bf"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "cc42c49216e085bf",
+        "type": "switch",
+        "z": "eb7364ef3ca37b14",
+        "name": "DALLE or Other",
+        "property": "imagePayload.model",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "dall-e",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 475,
+        "y": 600,
+        "wires": [
+            [
+                "9be028565a0af91d"
+            ],
+            [
+                "a4d1e8ed7c085196"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "978b094549afeae0",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "DALLE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"prompt\":\"prompt\",\"model\":\"model\",\"width\":\"width\",\"height\":\"height\"}",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "imagePayload.model",
+                "pt": "msg",
+                "from": "-nano-image",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 555,
+        "y": 580,
+        "wires": [
+            [
+                "2cd506dcbbc08b4c"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a4d1e8ed7c085196",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Other",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"prompt\":\"prompt\",\"model\":\"model\",\"width\":\"width\",\"height\":\"height\",\"negative_prompt\":\"(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, explicit, nudity, NSFW, naked, nude\",\"nImages\":1,\"num_steps\":25,\"resolution\":\"fwidthxheight\",\"sampler_name\":\"DPM++ 2S a Karras\",\"scale\":7.5}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 515,
+        "y": 620,
+        "wires": [
+            [
+                "822ab7f44e5d896f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "80e4a1f64a620f30",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 635,
+        "y": 580,
+        "wires": [
+            [
+                "708b3ab96163427d"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2cd506dcbbc08b4c",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Set Payload",
+        "func": "// Parse the incoming JSON string to an object\nlet imagePayload = msg.imagePayload;\n\n// Initialize a new payload object\nmsg.payload = {};\n\n// Set the prompt from imagePayload\n// Split the prompt by 🪙 and take the first part\nlet promptParts = imagePayload.prompt.split(\"🪙\");\nmsg.payload.prompt = promptParts[0].trim(); // Remove any leading/trailing whitespace\n\n// Set the model\nmsg.payload.model = imagePayload.model;\nmsg.payload.response_format = \"url\";\n\n// Set the width and height\nlet sizeParts = imagePayload.size.split('x');\nif (sizeParts.length === 2) {\n    msg.payload.width = sizeParts[0];\n    msg.payload.height = sizeParts[1];\n    \n} else {\n    // If size is not in the correct format, handle it (for example, set to null or default values)\n    msg.payload.width = null;\n    msg.payload.height = null;\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 595,
+        "y": 580,
+        "wires": [
+            [
+                "80e4a1f64a620f30"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "708b3ab96163427d",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Decode B64json",
+        "func": "// Check if b64_json is available\nif (msg.payload.data && msg.payload.data[0] && msg.payload.data[0].b64_json) {\n    // Get the base64 string\n    let b64String = msg.payload.data[0].b64_json;\n\n    // Decode base64 string to a buffer\n    let imageBuffer = Buffer.from(b64String, 'base64');\n\n    // Create a string representation (typically you would convert to a data URL for images)\n    let imageString = `data:image/png;base64,${b64String}`;\n\n    // Set both buffer and string in msg.payload\n    msg.payload.imageBuffer = imageBuffer; // Binary data in Buffer format\n    msg.payload.imageString = imageString; // Data URL string format\n\n} else {\n    msg.payload.error = \"No b64_json to decode\";\n}\n\n// Return the modified msg object\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 675,
+        "y": 580,
+        "wires": [
+            [
+                "b9fad985e69714f2"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b9fad985e69714f2",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "response",
+                "pt": "msg",
+                "to": "{\"status\":\"success\",\"data\":{\"image\":\"data:image/png;base64,B64_JSON\",\"description\":\"Generated image based on your request.\"},\"message\":\"Image generated successfully.\"}",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "response.data.image",
+                "pt": "msg",
+                "from": "B64_JSON",
+                "fromt": "str",
+                "to": "payload.data[0].b64_json",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "NanoGPTPhoto",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "headersBackup",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 715,
+        "y": 580,
+        "wires": [
+            [
+                "021492444c7e7dfa"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "021492444c7e7dfa",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/models",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 755,
+        "y": 580,
+        "wires": [
+            [
+                "27ca22dd03c4d4b7"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5cf986f1b0d8d740",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/check-nano-balance",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 835,
+        "y": 580,
+        "wires": [
+            [
+                "e936f150d4b3f3d4"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "27ca22dd03c4d4b7",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "headersBackup",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoModels",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 795,
+        "y": 580,
+        "wires": [
+            [
+                "5cf986f1b0d8d740"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "e936f150d4b3f3d4",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers",
+                "pt": "msg",
+                "to": "headersBackup",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoBalance",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "response.message",
+                "pt": "msg",
+                "to": "\"\\n\\n\\n**Image generated with MODEL successfully.**\\n\\n\\nImage Prompt: RIP\\n\\n\\n🪙 NanoBalance: BAL 🪙\\n\\n\\n🪙 NanoCost: CST 🪙\\n\\n\\n💸 NanoDepositAddress: ADD 💸\\n\\n\\n**For a list of different NanoGPT image models and how to use send**:\\n\\n\\n```Prompt\\nCan I get the current image models?\\n```\"",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "response.message",
+                "pt": "msg",
+                "from": "BAL",
+                "fromt": "str",
+                "to": "nanoBalance.balance",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response.message",
+                "pt": "msg",
+                "from": "CST",
+                "fromt": "str",
+                "to": "NanoGPTPhoto.nanoCost",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response.message",
+                "pt": "msg",
+                "from": "ADD",
+                "fromt": "str",
+                "to": "nanoBalance.nanoDepositAddress",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "response.message",
+                "pt": "msg",
+                "from": "RIP",
+                "fromt": "str",
+                "to": "NanoGPTPhoto.data[0].revised_prompt",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 875,
+        "y": 580,
+        "wires": [
+            [
+                "b2b196d149a2c6ac"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b2b196d149a2c6ac",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Model Name",
+        "func": "// Ensure required message properties are available\nif (!msg.nanoModels || !msg.nanoModels.models || !msg.nanoModels.models.image || !msg.req || !msg.req.body || !msg.req.body.model) {\n    node.error(\"Missing required data in msg.nanoModels or msg.req.body\");\n    return null;\n}\n\nconst modelString = msg.req.body.model; // Get the model string from the request body\nconst imageModels = msg.nanoModels.models.image; // Access the image models in nanoModels\n\n// Initialize modelName as null\nlet matchingModelName = null;\n\n// Iterate over each image model to find a matching model based on its \"model\" field\nfor (let modelKey in imageModels) {\n    if (imageModels.hasOwnProperty(modelKey)) {\n        const imageModel = imageModels[modelKey];\n\n        // Check if modelString contains the model key's \"model\" field\n        if (modelString.includes(imageModel.model)) {\n            matchingModelName = imageModel.name;\n            break; // Exit the loop once a match is found\n        }\n    }\n}\n\n// Assign the found model name or handle no match\nmsg.modelName = matchingModelName;\n\nif (!msg.modelName) {\n    node.warn(\"No matching model name found in modelString.\");\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 915,
+        "y": 580,
+        "wires": [
+            [
+                "07913e63df6fbdc7"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "07913e63df6fbdc7",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "change",
+                "p": "response.message",
+                "pt": "msg",
+                "from": "MODEL",
+                "fromt": "str",
+                "to": "modelName",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "response",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 955,
+        "y": 580,
+        "wires": [
+            [
+                "9b7b1660aaa38015"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "24d6d3ee5b967450",
+        "type": "switch",
+        "z": "eb7364ef3ca37b14",
+        "name": "Image Models Request",
+        "property": "nanochatpayload.prompt",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "Can I get the current image models?",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Can I get the current image models?",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 535,
+        "y": 480,
+        "wires": [
+            [
+                "b950a8a2736bfdb8"
+            ],
+            [
+                "b28298ad9412431a"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "dc14ee3bfa0411db",
+        "type": "http request",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://nano-gpt.com/api/models",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 625,
+        "y": 520,
+        "wires": [
+            [
+                "b81b514bdf6034bf"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b81b514bdf6034bf",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano Models",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "responseUrl",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "redirectList",
+                "pt": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "retry",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanotext",
+                "pt": "msg",
+                "to": "payload.models.text",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nanoimage",
+                "pt": "msg",
+                "to": "payload.models.image",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 665,
+        "y": 520,
+        "wires": [
+            [
+                "376bf2f639b0e907"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "84eacaf10e3477b2",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "OpenWebUIPayload",
+        "func": "\n\n// Ensure msg.OpenWebUIPayload is defined and initialize data as an array if necessary\nif (!msg.OpenWebUIPayload) {\n    msg.OpenWebUIPayload = {};\n}\n\n// Initialize data as an array if it is not already\nif (!Array.isArray(msg.OpenWebUIPayload.data)) {\n    msg.OpenWebUIPayload.data = [];\n}\n\nif (msg.nanoimage && typeof msg.nanoimage === 'object') {\n    // Initialize a set of existing model IDs for quick lookup\n    let existingimageModels = new Set(msg.OpenWebUIPayload.data.map(item => item.id));\n\n    // Iterate over each key in msg.nanotext\n    for (const key in msg.nanoimage) {\n        if (msg.nanoimage.hasOwnProperty(key)) {\n            const model = msg.nanoimage[key].model;\n            const id = model + \"-nano-image\"; \n\n            // Check if the model already exists in OpenWebUIPayload.data\n            if (!existingimageModels.has(model)) {\n                // If not, push the new entry\n                msg.OpenWebUIPayload.data.push({\n                    name: msg.nanoimage[key].name,\n                    cost: msg.nanoimage[key].cost,\n                    id: id,\n                    //costEstimate: msg.nanotext[key].costEstimate,\n                    //label: msg.nanotext[key].label,\n                    //labelVariant: msg.nanotext[key].labelVariant,\n                    //visible: msg.nanotext[key].visible\n                });\n                // Update the set of existing models\n                existingimageModels.add(model);\n            }\n        }\n    }\n} else {\n    node.warn(\"msg.nanotext is not defined or is not an object\");\n}\n\n// Return the modified message object\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 745,
+        "y": 520,
+        "wires": [
+            [
+                "3b3d5b5422892e00"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "376bf2f639b0e907",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "OpenWebUIPayload.object",
+                "pt": "msg",
+                "to": "list",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 705,
+        "y": 520,
+        "wires": [
+            [
+                "84eacaf10e3477b2"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "3b3d5b5422892e00",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "nanoimage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 785,
+        "y": 520,
+        "wires": [
+            [
+                "ecf5b916594a2922"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9b7b1660aaa38015",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Line Breaks",
+        "func": "var payload = msg.payload.message.replace(/(?:\\r\\n|\\r|\\n)/g, \"LINEBREAKHERE\");\nmsg.payload.message = payload;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 995,
+        "y": 580,
+        "wires": [
+            [
+                "ec61d646d8d14f7d"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "480442b7864b1637",
+        "type": "http response",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1075,
+        "y": 580,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "822ab7f44e5d896f",
+        "type": "debug",
+        "z": "eb7364ef3ca37b14",
+        "name": "Image Generate Debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "ec61d646d8d14f7d",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "Nano GPT Data",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload.status",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.prompt",
+                "pt": "msg",
+                "to": "payload.message",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload.message",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.imageData",
+                "pt": "msg",
+                "to": "payload.data.image",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload.data",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.model_id",
+                "pt": "msg",
+                "to": "model-nano-image",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload.model_id",
+                "pt": "msg",
+                "from": "model",
+                "fromt": "str",
+                "to": "req.body.model",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.size",
+                "pt": "msg",
+                "to": "req.body.size",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.num_image",
+                "pt": "msg",
+                "to": "req.body.n",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "req.body.model",
+                "pt": "msg",
+                "to": "payload.model_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1035,
+        "y": 580,
+        "wires": [
+            [
+                "480442b7864b1637",
+                "2ca4172d45d74c89"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b28298ad9412431a",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "url",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 575,
+        "y": 500,
+        "wires": [
+            [
+                "dc14ee3bfa0411db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ecf5b916594a2922",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Model Name",
+        "func": "// Ensure required message properties are available\nif (!msg.payload) {\n    node.error(\"Missing required data in msg.payload\");\n    return null;\n}\n\nconst imageModels = msg.payload; // Access the image models in payload\n\n// Initialize an array to store model objects\nlet matchingModels = [];\n\n// Iterate over each image model to find a matching model\nfor (let modelKey in imageModels) {\n    if (imageModels.hasOwnProperty(modelKey)) {\n        const imageModel = imageModels[modelKey];\n\n        // Check if the imageModel has the required properties\n        if (imageModel.model) {\n            // Create an object for the matching model\n            const modelObject = {\n                model: imageModel.model,\n                name: imageModel.name,\n                description: imageModel.description,\n                cost: imageModel.cost,\n                maxImages: imageModel.maxImages,\n                sampler: imageModel.sampler,\n                negativePrompt: imageModel.negativePrompt\n            };\n            // Push the model object to the array\n            matchingModels.push(modelObject);\n        }\n    }\n}\n\n// Assign the found model names or handle no matches\nmsg.models = matchingModels; // Store the array of model objects in msg.models\n\nif (msg.models.length === 0) {\n    node.warn(\"No matching model names found in msg.payload.\"); // Warn if no matches found\n}\n\nreturn msg; // Return the modified msg object",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 825,
+        "y": 520,
+        "wires": [
+            [
+                "9c41e0f17e6c110e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f1fad8f6d7ab2814",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Msg Fix length",
+        "func": "// Check if msg.payload.messages is an array\nif (Array.isArray(msg.payload.messages)) {\n    // Loop through each message\n    for (let i = 0; i < msg.payload.messages.length; i++) {\n        // Get the content of the message\n        let content = msg.payload.messages[i].content;\n\n        // Check if content contains the 🪙 emoji\n        if (content.includes('🪙 NanoBalance:')) {\n            // Split the content at the 🪙 emoji and take the first part\n            content = content.split('🪙 NanoBalance:')[0];\n        }\n\n        // Update the message content\n        msg.payload.messages[i].content = content;\n    }\n}\n\n// Return the modified msg\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 455,
+        "y": 480,
+        "wires": [
+            [
+                "4ea98c462fade828"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9c41e0f17e6c110e",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "msg",
+        "func": "// Ensure required message properties are available\nif (!msg.models || !Array.isArray(msg.models)) {\n    node.error(\"msg.models is either empty or not an array.\");\n    return null;\n}\n\n// Initialize an array to store the formatted strings\nlet formattedStrings = [];\n\n// Iterate over each model in msg.models\nfor (let i = 0; i < msg.models.length; i++) {\n    const model = msg.models[i];\n    const number = (i + 1 ) + \".\";\n\n    // Create the formatted string for each model\n    let formattedString = `LINEBREAKHERELINEBREAKHERE#### **${model.name}** 🪙Cost: ${model.cost[\"1024x1024\"]} Nano🪙LINEBREAKHERE **${model.description}** LINEBREAKHERE **Max Images: ${model.maxImages}** LINEBREAKHERELINEBREAKHERELINEBREAKHERECODECODECODEPromptLINEBREAKHERECan you give me an image prompt for the information after this and before the prompt put ID: ${model.model}?LINEBREAKHEREImage Prompt Information:LINEBREAKHERECODECODECODELINEBREAKHERELINEBREAKHERE•LINEBREAKHERE•`;\n\n    // Add to the array\n    formattedStrings.push(formattedString);\n}\n\n// Join all formatted strings into a single string separated by double line breaks\nmsg.outputString = formattedStrings.join(\"\\n\\n\");\n\n// If you want to log or output it, you can also set it to msg.payload or another property.\nmsg.IIIIIMMMMMAAAAAGGGEESSS = msg.outputString;\n\nreturn msg; // Return the modified msg object",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 865,
+        "y": 520,
+        "wires": [
+            [
+                "8ce82ced99f0bb2e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "8ce82ced99f0bb2e",
+        "type": "change",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"### **To use any of these models copy the code and send a chat then generate it after.**LINEBREAKHERELINEBREAKHERELINEBREAKHERE### **As of today, the following image models are on Nano-GPT:**LINEBREAKHERE•LINEBREAKHERE•LINEBREAKHERE•IIIIIMMMMMAAAAAGGGEESSS\"",
+                "tot": "json"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "IIIIIMMMMMAAAAAGGGEESSS",
+                "fromt": "str",
+                "to": "IIIIIMMMMMAAAAAGGGEESSS",
+                "tot": "msg"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "CODECODECODE",
+                "fromt": "str",
+                "to": "```",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 905,
+        "y": 520,
+        "wires": [
+            [
+                "eb7fb461ae8b1cc9"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "eb7fb461ae8b1cc9",
+        "type": "http response",
+        "z": "eb7364ef3ca37b14",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 945,
+        "y": 520,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "9be028565a0af91d",
+        "type": "function",
+        "z": "eb7364ef3ca37b14",
+        "name": "Model Name",
+        "func": "// Ensure required message properties are available\nif (!msg.imagePayload || !msg.imagePayload.prompt || !msg.nanoModels || !msg.nanoModels.models.image) {\n    node.error(\"Missing required data in msg object.\");\n    return null;\n}\n\nconst prompt = msg.imagePayload.prompt; // The prompt to check\nconst imageModels = msg.nanoModels.models.image; // The image models\n\n// Initialize model_id variable to null\nlet matchingModelId = null;\n\n// Iterate over each model key in the image models\nfor (let modelKey in imageModels) {\n    if (imageModels.hasOwnProperty(modelKey)) {\n        const imageModel = imageModels[modelKey];\n\n        // Check if the prompt contains the model name\n        if (prompt.includes(imageModel.model)) {\n            // If found, set the model_id\n            matchingModelId = imageModel.model;\n            break; // Exit the loop once a match is found\n        }\n    }\n}\n\n\nmsg.imagePayload.model = matchingModelId;\n\n\nreturn msg; // Return the modified msg object",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 515,
+        "y": 580,
+        "wires": [
+            [
+                "978b094549afeae0"
             ]
         ],
         "l": false
