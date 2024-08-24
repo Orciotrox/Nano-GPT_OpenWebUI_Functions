@@ -1,13 +1,5 @@
 [
     {
-        "id": "eb7364ef3ca37b14",
-        "type": "tab",
-        "label": "NanoGPT OpenWebUI Node Red",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "1169b407c08c2cf6",
         "type": "change",
         "z": "eb7364ef3ca37b14",
@@ -77,7 +69,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 780,
-        "y": 360,
+        "y": 400,
         "wires": []
     },
     {
@@ -90,7 +82,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 290,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "466ef42367056efe"
@@ -133,7 +125,7 @@
         "to": "",
         "reg": false,
         "x": 375,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "d3607fe83ef340da"
@@ -158,7 +150,7 @@
         "senderr": false,
         "headers": [],
         "x": 415,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "a4acb8b4104ab7ef"
@@ -218,7 +210,7 @@
         "to": "",
         "reg": false,
         "x": 455,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "f8601518610dcd0a"
@@ -239,7 +231,7 @@
         "finalize": "",
         "libs": [],
         "x": 535,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "62a4acb6cc6ddad6"
@@ -267,7 +259,7 @@
         "to": "",
         "reg": false,
         "x": 495,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "4913d041badcc1ac"
@@ -283,7 +275,7 @@
         "statusCode": "",
         "headers": {},
         "x": 650,
-        "y": 360,
+        "y": 400,
         "wires": []
     },
     {
@@ -306,7 +298,7 @@
         "to": "",
         "reg": false,
         "x": 575,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
                 "53bd3294a4df13b8",
@@ -1346,7 +1338,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1180,
-        "y": 580,
+        "y": 660,
         "wires": []
     },
     {
@@ -1359,7 +1351,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 320,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "2c2f4e03d2d3f787"
@@ -1376,7 +1368,7 @@
         "upload": false,
         "swaggerDoc": "",
         "x": 310,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "952754b32ab1c09e"
@@ -1397,7 +1389,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 840,
-        "y": 300,
+        "y": 580,
         "wires": []
     },
     {
@@ -1436,7 +1428,7 @@
         "to": "",
         "reg": false,
         "x": 415,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "8be16e4b7c898b24"
@@ -1461,7 +1453,7 @@
         "senderr": false,
         "headers": [],
         "x": 455,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "e68b18f7a9aca537"
@@ -1521,7 +1513,7 @@
         "to": "",
         "reg": false,
         "x": 495,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "306412a65c5768d5"
@@ -1542,7 +1534,7 @@
         "finalize": "",
         "libs": [],
         "x": 575,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "c6625fc0f834e16d"
@@ -1570,7 +1562,7 @@
         "to": "",
         "reg": false,
         "x": 535,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "eb53e456ad306f27"
@@ -1586,7 +1578,7 @@
         "statusCode": "",
         "headers": {},
         "x": 690,
-        "y": 300,
+        "y": 580,
         "wires": []
     },
     {
@@ -1609,7 +1601,7 @@
         "to": "",
         "reg": false,
         "x": 615,
-        "y": 300,
+        "y": 580,
         "wires": [
             [
                 "f4f59b567a09e57e",
@@ -1687,7 +1679,7 @@
         "to": "",
         "reg": false,
         "x": 435,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
                 "cc42c49216e085bf"
@@ -1700,12 +1692,12 @@
         "type": "switch",
         "z": "eb7364ef3ca37b14",
         "name": "DALLE or Other",
-        "property": "imagePayload.model",
+        "property": "req.body.model",
         "propertyType": "msg",
         "rules": [
             {
                 "t": "cont",
-                "v": "dall-e",
+                "v": "dall-e-3",
                 "vt": "str"
             },
             {
@@ -1716,13 +1708,13 @@
         "repair": false,
         "outputs": 2,
         "x": 475,
-        "y": 600,
+        "y": 660,
         "wires": [
             [
-                "9be028565a0af91d"
+                "978b094549afeae0"
             ],
             [
-                "a4d1e8ed7c085196"
+                "9be028565a0af91d"
             ]
         ],
         "l": false
@@ -1756,38 +1748,10 @@
         "to": "",
         "reg": false,
         "x": 555,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "2cd506dcbbc08b4c"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "a4d1e8ed7c085196",
-        "type": "change",
-        "z": "eb7364ef3ca37b14",
-        "name": "Other",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"prompt\":\"prompt\",\"model\":\"model\",\"width\":\"width\",\"height\":\"height\",\"negative_prompt\":\"(deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, explicit, nudity, NSFW, naked, nude\",\"nImages\":1,\"num_steps\":25,\"resolution\":\"fwidthxheight\",\"sampler_name\":\"DPM++ 2S a Karras\",\"scale\":7.5}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 515,
-        "y": 620,
-        "wires": [
-            [
-                "822ab7f44e5d896f"
             ]
         ],
         "l": false
@@ -1809,7 +1773,7 @@
         "senderr": false,
         "headers": [],
         "x": 635,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "708b3ab96163427d"
@@ -1830,7 +1794,7 @@
         "finalize": "",
         "libs": [],
         "x": 595,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "80e4a1f64a620f30"
@@ -1851,7 +1815,7 @@
         "finalize": "",
         "libs": [],
         "x": 675,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "b9fad985e69714f2"
@@ -1907,7 +1871,7 @@
         "to": "",
         "reg": false,
         "x": 715,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "021492444c7e7dfa"
@@ -1932,7 +1896,7 @@
         "senderr": false,
         "headers": [],
         "x": 755,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "27ca22dd03c4d4b7"
@@ -1957,7 +1921,7 @@
         "senderr": false,
         "headers": [],
         "x": 835,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "e936f150d4b3f3d4"
@@ -1997,7 +1961,7 @@
         "to": "",
         "reg": false,
         "x": 795,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "5cf986f1b0d8d740"
@@ -2080,7 +2044,7 @@
         "to": "",
         "reg": false,
         "x": 875,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "b2b196d149a2c6ac"
@@ -2101,7 +2065,7 @@
         "finalize": "",
         "libs": [],
         "x": 915,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "07913e63df6fbdc7"
@@ -2138,7 +2102,7 @@
         "to": "",
         "reg": false,
         "x": 955,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "9b7b1660aaa38015"
@@ -2355,7 +2319,7 @@
         "finalize": "",
         "libs": [],
         "x": 995,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "ec61d646d8d14f7d"
@@ -2371,26 +2335,9 @@
         "statusCode": "",
         "headers": {},
         "x": 1075,
-        "y": 580,
+        "y": 660,
         "wires": [],
         "l": false
-    },
-    {
-        "id": "822ab7f44e5d896f",
-        "type": "debug",
-        "z": "eb7364ef3ca37b14",
-        "name": "Image Generate Debug",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 650,
-        "y": 620,
-        "wires": []
     },
     {
         "id": "ec61d646d8d14f7d",
@@ -2476,7 +2423,7 @@
         "to": "",
         "reg": false,
         "x": 1035,
-        "y": 580,
+        "y": 660,
         "wires": [
             [
                 "480442b7864b1637",
@@ -2637,7 +2584,7 @@
         "type": "function",
         "z": "eb7364ef3ca37b14",
         "name": "Model Name",
-        "func": "// Ensure required message properties are available\nif (!msg.imagePayload || !msg.imagePayload.prompt || !msg.nanoModels || !msg.nanoModels.models.image) {\n    node.error(\"Missing required data in msg object.\");\n    return null;\n}\n\nconst prompt = msg.imagePayload.prompt; // The prompt to check\nconst imageModels = msg.nanoModels.models.image; // The image models\n\n// Initialize model_id variable to null\nlet matchingModelId = null;\n\n// Iterate over each model key in the image models\nfor (let modelKey in imageModels) {\n    if (imageModels.hasOwnProperty(modelKey)) {\n        const imageModel = imageModels[modelKey];\n\n        // Check if the prompt contains the model name\n        if (prompt.includes(imageModel.model)) {\n            // If found, set the model_id\n            matchingModelId = imageModel.model;\n            break; // Exit the loop once a match is found\n        }\n    }\n}\n\n\nmsg.imagePayload.model = matchingModelId;\n\n\nreturn msg; // Return the modified msg object",
+        "func": "// Ensure required message properties are available\nif (!msg.imagePayload || !msg.imagePayload.prompt || !msg.nanoModels || !msg.nanoModels.models.image) {\n    node.error(\"Missing required data in msg object.\");\n    return null;\n}\n\nconst prompt = msg.imagePayload.prompt; // The prompt to check\nconst imageModels = msg.nanoModels.models.image; // The image models\n\n// Initialize model_id variable to null\nlet matchingModelId = null;\n\n// Iterate over each model key in the image models\nfor (let modelKey in imageModels) {\n    if (imageModels.hasOwnProperty(modelKey)) {\n        const imageModel = imageModels[modelKey];\n\n        // Check if the prompt contains the model name\n        if (prompt.includes(imageModel.model)) {\n            // If found, set the model_id\n            matchingModelId = imageModel.model;\n            break; // Exit the loop once a match is found\n        }\n    }\n}\n\n// If no match is found, look for dall-e-3\nif (matchingModelId === null && imageModels.hasOwnProperty('dall-e-3')) {\n    matchingModelId = 'dall-e-3';\n}\n\n// Only update msg.imagePayload.model if a match was found\nif (matchingModelId !== null) {\n    msg.imagePayload.model = matchingModelId;\n}\n\nreturn msg; // Return the modified msg object\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2645,7 +2592,7 @@
         "finalize": "",
         "libs": [],
         "x": 515,
-        "y": 580,
+        "y": 680,
         "wires": [
             [
                 "978b094549afeae0"
