@@ -6,7 +6,8 @@ This Node-RED flow and function pipe enables interaction between Nano-GPT.com an
 
 - **Integration**: Connects OpenWebUI with Nano-GPT.com.
 - **Photo Generate Button**: 
-  /n<img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Button.png" alt="Button" width="300"/>
+  
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Button.png" alt="Button" width="300"/>
 
 ## Installation Steps
 
