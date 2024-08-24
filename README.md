@@ -12,7 +12,7 @@ This Node-RED flow and fuction Pipe that enables interaction between **Nano-GPT.
 
 - Import the flow into node red first.
 
-- Then copy the fuction into Openweb UI and set your API Key For nano-GPT.com and your node red url.
+- Then copy the fuction pipe for Chat and action for Images into Openweb UI and set your API Key For nano-GPT.com and your node red url.
   
 ## OpenWebUI Chat:
 
