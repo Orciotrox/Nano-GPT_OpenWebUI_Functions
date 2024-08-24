@@ -22,7 +22,7 @@ This Node-RED flow and function pipe enables interaction between Nano-GPT.com an
      ```
      nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
      ```
-   - <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Nano%20Wallet.png alt="Wallet" width="300"/>
+   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Nano%20Wallet.png" alt="Wallet" width="300"/>
 
 ## Screenshots
 
