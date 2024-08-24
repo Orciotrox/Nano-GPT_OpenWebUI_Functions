@@ -13,7 +13,7 @@ This Node-RED flow and function pipe enables interaction between Nano-GPT.com an
 
 1. **Import the Flow into Node-RED**:  
    Import the `Node Red Flow.json` file.  
-   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Flow.png" alt="Node Red Flow" width="600"/>
+   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Flow.png" alt="Node Red Flow" max-width="900"/>
 
 2. **Create Functions in Open WebUI**:  
    Create two new functions: `Node Red Nano GPT Pipe.py` and `Node Red Nano GPT Action.py`.  
@@ -28,13 +28,13 @@ This Node-RED flow and function pipe enables interaction between Nano-GPT.com an
 ## Screenshots
 
 - **Chat Interface**:  
-  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Chat.png" alt="Chat" width="600"/> 
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Chat.png" alt="Chat" width="400"/> 
 
 - **Image Generation**:  
-  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Images.png" alt="Generated Image" width="600"/>
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Images.png" alt="Generated Image" max-width="400"/>
 
 You can list all image models by saying, "Can I get the current image models?" in the chat.
 
 - **List of All Image Models**:  
-  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/All%20Images.png" alt="List All Image Models" width="600"/>
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/All%20Images.png" alt="List All Image Models" max-width="400"/>
 
