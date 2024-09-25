@@ -1,10 +1,11 @@
-# Description: Integrating Nano-GPT with OpenWebUI
+# Integrating Nano-GPT with OpenWebUI
 
 Node Red No Longer Needed Old Flow can be found at /Open WebUI Functions/Old Node Red Flows v1
 
 ## Key Features
 
 - **Integration**: Connects OpenWebUI with Nano-GPT.com.
+- **Recive Nano Button**:
 - **Photo Generate Button**: 
   
   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIv2.png" alt="Button" width="300"/>
