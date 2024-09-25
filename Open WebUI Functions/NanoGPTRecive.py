@@ -1,3 +1,13 @@
+"""
+title: Nano GPT Revice Nano
+author: Elliott Groves
+version: 1.0
+date: 2024-09-24
+description: Nano GPT recive Nano balance button for openwebui.
+author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
+funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
+nano_address: nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
+"""
 from pydantic import BaseModel, Field
 from typing import Optional
 import requests
