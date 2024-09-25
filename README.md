@@ -25,6 +25,8 @@ Node Red No Longer Needed Old Flow can be found at /Open WebUI Functions/Old Nod
   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Chat.png" alt="Chat" width="400"/> 
 
 - **Image Generation**:  
-  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Images.png" alt="Generated Image" max-width="400"/>
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIG1.png" alt="Generated Image" max-width="400"/>
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIG2.png" alt="Generated Image" max-width="400"/>
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIG3.png" alt="Generated Image" max-width="400"/>
 
 
