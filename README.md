@@ -1,4 +1,4 @@
-# Integrating Nano-GPT with OpenWebUI
+# Nano-GPT OpenWebUI Fuctions
 
 Nano-GPT Invite Link:
 https://nano-gpt.com/invite/8AQjX8kA
