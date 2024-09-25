@@ -1,4 +1,4 @@
-# Nano-GPT OpenWebUI Fuctions
+# Nano-GPT OpenWebUI Functions
 
 Nano-GPT Invite Link:
 https://nano-gpt.com/invite/8AQjX8kA
