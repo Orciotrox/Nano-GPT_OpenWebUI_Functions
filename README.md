@@ -7,7 +7,7 @@ Node Red No Longer Needed Old Flow can be found at /Open WebUI Functions/Old Nod
 - **Integration**: Connects OpenWebUI with Nano-GPT.com.
 - **Photo Generate Button**: 
   
-  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Button.png](https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIv2.png" alt="Button" width="300"/>
+  <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIv2.png" alt="Button" width="300"/>
 
 ## Installation Steps
 
