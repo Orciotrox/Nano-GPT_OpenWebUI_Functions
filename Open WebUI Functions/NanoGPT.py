@@ -155,7 +155,7 @@ class Pipe:
             f"🪙 Balance: {balance} Nano 🪙\n\n"
             f"🏛️ Nano Deposit Address: {resultdep} 🏛️\n\n"
             f"🌐 Website: https://nano-gpt.com/ 🌐\n\n"
-            f"📌 If you make a deposit and it dosen't add to you balance try refreshing the website link above: 📌\n\n🖱️ If you still have issues email support@nano-gpt.com 🖱️"
+            f"📌 If you make a deposit and it dosen't add to your balance use the NanoGPTRecive action button below: 📌\n\n🖱️ If you still have issues email support@nano-gpt.com 🖱️"
         )
 
         # Logic to determine the final response based on balance and cost
