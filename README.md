@@ -11,7 +11,7 @@ Node Red No Longer Needed Old Flow can be found at /Open WebUI Functions/Old Nod
 
 ## Installation Steps
 
-1. Create two new functions: `NanoGPT.py` and `NanoGPTImages.py`they are found at /Open WebUI Functions/. Then add API Key.  
+1. Create three new functions: `NanoGPT.py`, `NanoGPTRecive.py`, and `NanoGPTImages.py`they are found at /Open WebUI Functions/. Then add API Key.  
   
    - If you like this project and wish to donate a Nano:
      ```
