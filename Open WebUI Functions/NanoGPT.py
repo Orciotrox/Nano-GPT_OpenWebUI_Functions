@@ -8,6 +8,9 @@ author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 nano_address: nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
 """
+
+from typing import List, Union, Generator, Iterator
+from pydantic import BaseModel, Field
 import requests
 import json
 import time
@@ -82,100 +85,133 @@ class Pipe:
             ]
 
     def pipe(self, body: dict) -> Union[str, Generator, Iterator]:
-        # Extract system message and user messages
-        system_message, messages = pop_system_message(body["messages"])
+        try:
+            # Extract system message and user messages
+            system_message, messages = pop_system_message(body["messages"])
 
-        processed_messages = []
-        for message in messages:
-            content = message.get("content", "")
+            processed_messages = []
+            for message in messages:
+                content = message.get("content", "")
 
-            # Check if the content contains the marker for cost
-            if "\n\n🪙 Cost:" in content:
-                # Split the content at the marker and keep the part before it
-                content = content.split("\n\n🪙 Cost:")[0]
+                # Remove cost info if present
+                if "\n\n🪙 Cost:" in content:
+                    content = content.split("\n\n🪙 Cost:")[0]
 
-            processed_messages.append(
-                {
-                    "role": message["role"],
-                    "content": content,
-                }
+                processed_messages.append(
+                    {
+                        "role": message["role"],
+                        "content": content,
+                    }
+                )
+
+            model_name = body["model"]
+            if model_name.startswith("nanogpt2."):
+                model_name = model_name[len("nanogpt2.") :]
+
+            payload = {
+                "model": model_name,
+                "messages": processed_messages,
+                "prompt": content,
+            }
+
+            headers = {
+                "x-api-key": self.valves.NANO_GPT_API_KEY,
+                "Content-Type": "application/json",
+            }
+            print(f"Using model: {model_name}")  # Log the model name
+            print(f"Payload: {payload}")
+
+            # Corrected POST request
+            start_time = time.time()
+            r = requests.post(
+                url=f"{self.valves.NANO_GPT_API_BASE_URL}/talk-to-gpt",
+                headers=headers,
+                json=payload,
+                timeout=120,  # Increased timeout
+            )
+            elapsed_time = time.time() - start_time
+            print(f"Request took {elapsed_time} seconds")
+
+            # Check for HTTP errors
+            r.raise_for_status()
+
+            result = r.text
+            print(f"Result Text: {result}")
+
+            # Process the response
+            if "<NanoGPT>" in result:
+                parts = result.split("<NanoGPT>")
+            else:
+                print(f"Unexpected response format: {result}")
+                return f"Error from API: {result.strip()}"
+
+            text_response = parts[0].strip()
+
+            # Check for title generation request
+            for message in body.get("messages", []):
+                if (
+                    "Create a concise, 3-5 word phrase with an emoji as a title"
+                    in message.get("content", "")
+                ):
+                    return text_response
+
+            # Extract NanoGPT info
+            try:
+                nano_info = json.loads(parts[1].split("</NanoGPT>")[0])
+            except (IndexError, json.JSONDecodeError) as e:
+                print(f"Error parsing NanoGPT info: {e}")
+                return "Error: Failed to parse NanoGPT info."
+
+            result2 = f"{text_response}\n\n🪙 Cost: {nano_info.get('nanoCost', 'N/A')} Nano 🪙"
+            cost = nano_info.get("nanoCost", "0")
+            print(f"Response: {result2}")
+
+            # Fetch balance and deposit address
+            rbo = requests.post(
+                url=f"{self.valves.NANO_GPT_API_BASE_URL}/check-nano-balance",
+                headers=headers,
+                timeout=30,  # Set a reasonable timeout
+            )
+            if rbo.status_code == 200:
+                rb = rbo.json()
+                balance = rb.get("balance", "Error")
+                resultdep = rb.get("nanoDepositAddress", "Error")
+            else:
+                balance = "Error"
+                resultdep = "Error"
+                print(f"Error fetching balance: {rbo.status_code} - {rbo.text}")
+
+            result3 = (
+                f"{result2}\n\n"
+                f"🪙 Balance: {balance} Nano 🪙\n\n"
+                f"🏛️ Nano Deposit Address: {resultdep} 🏛️\n\n"
+                f"🌐 Website: https://nano-gpt.com/ 🌐\n\n"
+                f"📌 If you make a deposit and it doesn't add to your balance use the NanoGPTRecive action button below: 📌"
+                f"🖱️ If you still have issues, email support@nano-gpt.com 🖱️"
             )
 
-        model_name = body["model"]
-        if model_name.startswith("nanogpt2."):
-            model_name = model_name[len("nanogpt2.") :]
+            # Determine final response based on balance and cost
+            try:
+                balance_val = float(balance)
+                cost_val = float(cost)
 
-        # Ensure the system_message is coerced to a string
-        payload = {
-            "model": model_name,
-            "messages": processed_messages,
-            "prompt": content,
-        }
+                if balance_val < 1:
+                    return result3
+                elif cost_val > 0.5:
+                    return result2
+                else:
+                    return text_response
+            except ValueError:
+                print(f"Invalid balance or cost values: balance={balance}, cost={cost}")
+                return "Error: Invalid balance or cost value."
 
-        headers = {
-            "x-api-key": self.valves.NANO_GPT_API_KEY,
-            "Content-Type": "application/json",
-        }
-        print(f"pipe:{__name__}")
-        print(f"Payload: {payload}")
-
-        # Make the POST request
-        r = requests.post(
-            url=f"{self.valves.NANO_GPT_API_BASE_URL}/talk-to-gpt",
-            json=payload,
-            headers=headers,
-        )
-        result = r.text if r.status_code == 200 else "Error"
-
-        # Split the response to separate the text and NanoGPT info
-        parts = result.split("<NanoGPT>")
-
-        # Extract the text response (everything before <NanoGPT>)
-        text_response = parts[0].strip()
-
-        # Check if the request is for generating a title
-        for message in body.get("messages", []):
-            if (
-                "Create a concise, 3-5 word phrase with an emoji as a title"
-                in message.get("content", "")
-            ):
-                return text_response
-
-        # Extract the NanoGPT info
-        nano_info = json.loads(parts[1].split("</NanoGPT>")[0])
-        result2 = f"{text_response}\n\n🪙 Cost: {nano_info['nanoCost']} Nano 🪙\n\n📌 If you like this project and wish to donate a Nano: 📌\n\n🏛️ nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk 🏛️"
-        cost = f"{nano_info['nanoCost']}"
-        print(f"response:{result2}")
-
-        # Fetch balance and deposit address
-        rbo = requests.post(
-            url=f"{self.valves.NANO_GPT_API_BASE_URL}/check-nano-balance",
-            headers=headers,
-        )
-        rb = rbo.json()
-        balance = rb.get("balance", "Error") if rbo.status_code == 200 else "Error"
-        resultdep = (
-            rb.get("nanoDepositAddress", "Error") if rbo.status_code == 200 else "Error"
-        )
-
-        result3 = (
-            f"{result2}\n\n"
-            f"🪙 Balance: {balance} Nano 🪙\n\n"
-            f"🏛️ Nano Deposit Address: {resultdep} 🏛️\n\n"
-            f"🌐 Website: https://nano-gpt.com/ 🌐\n\n"
-            f"📌 If you make a deposit and it dosen't add to your balance use the NanoGPTRecive action button below: 📌\n\n🖱️ If you still have issues email support@nano-gpt.com 🖱️"
-        )
-
-        # Logic to determine the final response based on balance and cost
-        try:
-            balance = float(balance)  # Convert balance to float for comparison
-            cost = float(cost)  # Convert cost to float for comparison
-
-            if balance < 1:
-                return result3
-            elif cost > 0.5:
-                return result2
-            else:
-                return text_response
-        except ValueError:
-            return "Error: Invalid balance or cost value."
+        except requests.exceptions.Timeout:
+            print("Request to Nano GPT API timed out.")
+            return "Error: The request timed out. Please try again later."
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err}")
+            print(f"Response text: {r.text}")
+            return f"Error: Received HTTP status {r.status_code} from the API."
+        except Exception as e:
+            print(f"Unexpected error in pipe method: {e}")
+            return f"Error: {str(e)}"
