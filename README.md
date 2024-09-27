@@ -13,7 +13,7 @@
 
 ## Key Features
 
-- **Integration**: Connects OpenWebUI with Nano-GPT.com.
+- **Integration**: Connects OpenWebUI with Nano-GPT.com with most features like basic Rag and Image Gen working.
 - **Receive Nano Button**: Automates receiving Nano through the UI.
 - **Photo Generate Button**: Easily generate images from the UI.
   
