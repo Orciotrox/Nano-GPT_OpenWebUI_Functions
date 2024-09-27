@@ -1,8 +1,8 @@
 """
 title: Nano GPT 
 author: Elliott Groves
-version: 2.0
-date: 2024-09-24
+version: 2.0.1
+date: 2024-09-27
 description: Nano GPT for openwebui.
 author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
@@ -15,6 +15,9 @@ import requests
 import json
 import time
 from open_webui.utils.misc import pop_system_message
+from open_webui.main import chat_completion_tools_handler
+
+current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 
 class Pipe:
@@ -35,6 +38,19 @@ class Pipe:
     def __init__(self):
         self.type = "direct"
         self.valves = self.Valves()
+        self.documents = None
+        self.index = None
+
+    async def on_startup(self):
+        global documents, index
+
+        self.documents = SimpleDirectoryReader("/app/backend/data").load_data()
+        self.index = VectorStoreIndex.from_documents(self.documents)
+        pass
+
+    async def on_shutdown(self):
+        # This function is called when the server is stopped.
+        pass
 
     def pipes(self):
         if self.valves.NANO_GPT_API_KEY:
@@ -86,23 +102,34 @@ class Pipe:
 
     def pipe(self, body: dict) -> Union[str, Generator, Iterator]:
         try:
-            # Extract system message and user messages
             system_message, messages = pop_system_message(body["messages"])
-
             processed_messages = []
+
+            for content in system_message:
+                content_sys = system_message.get("content", "")
             for message in messages:
-                content = message.get("content", "")
+                content_message = message.get("content", "")
+            print(f"Messages: {content_message}")
+            print(f"System Messages: {content_sys}")
+            if (
+                "Use the following context as your learned knowledge, inside <context></context>"
+                in content_sys
+            ):
+                content = content_sys
+            else:
+                content = content_message
+            if "\n\n🪙 Cost:" in content:
+                content = content.split("\n\n🪙 Cost:")[0]
+            print(f"Content:{content}")
 
-                # Remove cost info if present
-                if "\n\n🪙 Cost:" in content:
-                    content = content.split("\n\n🪙 Cost:")[0]
+            # return "Stop For Testing"
 
-                processed_messages.append(
-                    {
-                        "role": message["role"],
-                        "content": content,
-                    }
-                )
+            processed_messages.append(
+                {
+                    "role": message["role"],
+                    "content": content,
+                }
+            )
 
             model_name = body["model"]
             if model_name.startswith("nanogpt2."):
@@ -119,7 +146,7 @@ class Pipe:
                 "Content-Type": "application/json",
             }
             print(f"Using model: {model_name}")  # Log the model name
-            print(f"Payload: {payload}")
+            print(f"Payload at {current_time}: {payload}")
 
             # Corrected POST request
             start_time = time.time()
@@ -209,8 +236,8 @@ class Pipe:
             print("Request to Nano GPT API timed out.")
             return "Error: The request timed out. Please try again later."
         except requests.exceptions.HTTPError as http_err:
-            print(f"HTTP error occurred: {http_err}")
-            print(f"Response text: {r.text}")
+            print(f"HTTP error occurred at {current_time}: {http_err}")
+            print(f"Response text at {current_time}: {r.text}")
             return f"Error: Received HTTP status {r.status_code} from the API."
         except Exception as e:
             print(f"Unexpected error in pipe method: {e}")
