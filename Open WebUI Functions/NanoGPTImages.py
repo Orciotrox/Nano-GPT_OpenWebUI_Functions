@@ -1,7 +1,7 @@
 """
 title: Nano GPT Image Gen
 author: Elliott Groves
-version: 1.0
+version: 1.0.1
 date: 2024-09-24
 description: Nano GPT Image Gen action button for openwebui.
 author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
