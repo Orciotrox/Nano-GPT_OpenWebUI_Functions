@@ -21,13 +21,6 @@ This project integrates Nano-GPT.com's features into OpenWebUI, offering seamles
    These can be found under `/Open WebUI Functions/` or in the release files.
 ### 2. Add the Nano GPT API Key under "Valves" (settings icon) for each function.
 
-## Nano-GPT Invite Link:
-- [Invite to Nano-GPT](https://nano-gpt.com/invite/8AQjX8kA)  
-  Join the Nano-GPT platform and start integrating with OpenWebUI.
-
-## Nano Donations Address:
-- `nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk`  
-  Support development by sending Nano to this address.
 
 ## Key Features:
 - **Integration**: Connects OpenWebUI with Nano-GPT.com to enable features like RAG (retrieval-augmented generation) and image generation.
@@ -44,3 +37,11 @@ This project integrates Nano-GPT.com's features into OpenWebUI, offering seamles
   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIG1.png" alt="Generated Image 1" width="400"/>  
   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIG2.png" alt="Generated Image 2" width="400"/>  
   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/refs/heads/main/ReadmePhotos/NIG3.png" alt="Generated Image 3" width="400"/>
+
+## Nano-GPT Invite Link:
+- [Invite to Nano-GPT](https://nano-gpt.com/invite/8AQjX8kA)  
+  Join the Nano-GPT platform and start integrating with OpenWebUI.
+
+## Nano Donations Address:
+- `nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk`  
+  Support development by sending Nano to this address.
