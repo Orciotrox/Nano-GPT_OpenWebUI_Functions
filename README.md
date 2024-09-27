@@ -5,11 +5,7 @@ Open WebUI Links:
   - Recive Balance: https://openwebui.com/f/elliott/nanogpt_receive_nano/
 
 Nano-GPT Invite Link:
-  https://nano-gpt.com/invite/8AQjX8kA
-
-NOTES:
-- Node Red No Longer Needed Old Flow can be found at /Open WebUI Functions/Old Node Red Flows v1
-- Need to fix limitation with longer chats
+  - Link: https://nano-gpt.com/invite/8AQjX8kA
 
 ## Key Features
 
