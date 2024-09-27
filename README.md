@@ -6,6 +6,9 @@
 
 ## Nano-GPT Invite Link:
   - Link: https://nano-gpt.com/invite/8AQjX8kA
+    
+## Nano Donations Address:
+  - nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
 
 ## Key Features
 
@@ -18,12 +21,6 @@
 ## Installation Steps
 
 1. Create three new functions: `NanoGPT.py`, `NanoGPTRecive.py`, and `NanoGPTImages.py`they are found at /Open WebUI Functions/. Then add API Key.  
-  
-   - If you like this project and wish to donate a Nano:
-     ```
-     nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
-     ```
-   <img src="https://raw.githubusercontent.com/Orciotrox/NodeRed-Nano-GPT.com-OpenWebUI/main/ReadmePhotos/Nano%20Wallet.png" alt="Wallet" width="300"/>
 
 ## Screenshots
 
