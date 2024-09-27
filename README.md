@@ -1,8 +1,8 @@
 # Nano-GPT OpenWebUI Functions
 Open WebUI Links:
-  Pipeline: https://openwebui.com/f/elliott/nano_gpt/
-  Images: https://openwebui.com/f/elliott/nanoimages/
-  Recive Balance: https://openwebui.com/f/elliott/nanogpt_receive_nano/
+  - Pipeline: https://openwebui.com/f/elliott/nano_gpt/
+  - Images: https://openwebui.com/f/elliott/nanoimages/
+  - Recive Balance: https://openwebui.com/f/elliott/nanogpt_receive_nano/
 
 Nano-GPT Invite Link:
   https://nano-gpt.com/invite/8AQjX8kA
