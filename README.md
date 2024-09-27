@@ -11,12 +11,12 @@ This project integrates Nano-GPT.com's features into OpenWebUI, offering seamles
 
 ## Installation Steps:
 ### **openwebui.com Installation**: 
-   Click the links above for each function or download under releases.
+   - Click the links above for each function or download under releases.
 ### **Manual Installation**:  
-   In OpenWebUI, create the following functions manually:
-   - `NanoGPT.py`
-   - `NanoGPTReceive.py`
-   - `NanoGPTImages.py`  
+   - In OpenWebUI, create the following functions manually:
+      - `NanoGPT.py`
+      - `NanoGPTReceive.py`
+      - `NanoGPTImages.py`  
    These can be found under `/Open WebUI Functions/` or in the release files.
 1. Install the functions using a method above.
 2. Add the Nano GPT API Key under "Valves" (settings icon) for each function.
