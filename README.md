@@ -10,16 +10,16 @@ This project integrates Nano-GPT.com's features into OpenWebUI, offering seamles
 [Nano GPT Receive Nano Button](https://openwebui.com/f/elliott/nanogpt_receive_nano/) – Automates receiving Nano cryptocurrency through OpenWebUI for use with Nano-GPT.com.
 
 ## Installation Steps:
-### **openwebui.com Installation**: 
+### 1. Install the functions using a method below.
+#### **openwebui.com Installation**: 
    - Click the links above for each function or download under releases.
-### **Manual Installation**:  
+#### **Manual Installation**:  
    - In OpenWebUI, create the following functions manually:
       - `NanoGPT.py`
       - `NanoGPTReceive.py`
       - `NanoGPTImages.py`  
    These can be found under `/Open WebUI Functions/` or in the release files.
-1. Install the functions using a method above.
-2. Add the Nano GPT API Key under "Valves" (settings icon) for each function.
+### 2. Add the Nano GPT API Key under "Valves" (settings icon) for each function.
 
 ## Nano-GPT Invite Link:
 - [Invite to Nano-GPT](https://nano-gpt.com/invite/8AQjX8kA)  
