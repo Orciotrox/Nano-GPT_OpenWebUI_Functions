@@ -111,6 +111,8 @@ class Pipe:
                 content_message = message.get("content", "")
             print(f"Messages: {content_message}")
             print(f"System Messages: {content_sys}")
+            print(f"Body: {body}")
+
             if (
                 "Use the following context as your learned knowledge, inside <context></context>"
                 in content_sys
@@ -121,8 +123,6 @@ class Pipe:
             if "\n\n🪙 Cost:" in content:
                 content = content.split("\n\n🪙 Cost:")[0]
             print(f"Content:{content}")
-
-            # return "Stop For Testing"
 
             processed_messages.append(
                 {
@@ -137,9 +137,11 @@ class Pipe:
 
             payload = {
                 "model": model_name,
-                "messages": processed_messages,
+                "messages": body["messages"],
                 "prompt": content,
             }
+            print(f"Payload:{payload}")
+            # return "Stop For Testing"
 
             headers = {
                 "x-api-key": self.valves.NANO_GPT_API_KEY,
