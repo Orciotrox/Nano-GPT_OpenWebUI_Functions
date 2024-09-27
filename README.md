@@ -3,14 +3,9 @@
 This project integrates Nano-GPT.com's features into OpenWebUI, offering seamless interaction with text-based AI tasks, image generation, and Nano cryptocurrency functionalities.
 
 ## OpenWebUI Links:
-- [Nano GPT Pipeline](https://openwebui.com/f/elliott/nano_gpt/)  
-  For text-based AI tasks, including document retrieval and generation.
-  
-- [Nano GPT Image Generation Button](https://openwebui.com/f/elliott/nanoimages/)  
-  Easily generate images from text prompts using Nano-GPT.
-
-- [Nano GPT Receive Nano Button](https://openwebui.com/f/elliott/nanogpt_receive_nano/)  
-  Automates receiving Nano cryptocurrency through the OpenWebUI interface.
+[Nano GPT Pipeline](https://openwebui.com/f/elliott/nano_gpt/) – Integrates Nano-GPT.com into OpenWebUI for seamless AI tasks like document retrieval and generation.
+[Nano GPT Image Generation Button](https://openwebui.com/f/elliott/nanoimages/) – Enables users to generate images from text prompts via Nano-GPT.com.
+[Nano GPT Receive Nano Button](https://openwebui.com/f/elliott/nanogpt_receive_nano/) – Automates receiving Nano cryptocurrency through OpenWebUI for use with Nano-GPT.com.
 
 ## Installation Steps:
 **https://openwebui.com/ Installation**: Click the links above for each function or download under releases.
