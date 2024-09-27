@@ -16,7 +16,7 @@ import asyncio
 class Action:
     class Valves(BaseModel):
         NANO_GPT_API_KEY: str = Field(
-            default="YOUR_API_KEY",
+            default="Your Nano GPT API Key",
             description="API key for authenticating requests to the Nano GPT API.",
         )
         NANO_GPT_API_BASE_URL: str = Field(
