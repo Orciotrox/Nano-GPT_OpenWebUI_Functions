@@ -9,14 +9,6 @@ funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 nano_address: nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
 icon_url: data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDMyIDMyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTI1LjYgMEg2LjRDMi44NjUzOCAwIDAgMi44NjUzOCAwIDYuNFYyNS42QzAgMjkuMTM0NiAyLjg2NTM4IDMyIDYuNCAzMkgyNS42QzI5LjEzNDYgMzIgMzIgMjkuMTM0NiAzMiAyNS42VjYuNEMzMiAyLjg2NTM4IDI5LjEzNDYgMCAyNS42IDBaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTAzXzE3ODkpIi8+DQo8cGF0aCBkPSJNNS45NTc3IDI0Ljg4NDVDNS40MjU3OCAyNS45NDgzIDYuMTk5MzcgMjcuMiA3LjM4ODc4IDI3LjJIMTguMjExMUMxOS40MDA1IDI3LjIgMjAuMTc0MSAyNS45NDgzIDE5LjY0MjIgMjQuODg0NUwxNC4yMzEgMTQuMDYyMkMxMy42NDE0IDEyLjg4MjkgMTEuOTU4NSAxMi44ODI5IDExLjM2ODggMTQuMDYyMkw1Ljk1NzcgMjQuODg0NVoiIGZpbGw9IndoaXRlIi8+DQo8cGF0aCBkPSJNMTUuNTU3NyAyNC44ODQ1QzE1LjAyNTggMjUuOTQ4MyAxNS43OTk0IDI3LjIgMTYuOTg4OCAyNy4ySDI0LjYxMTFDMjUuODAwNSAyNy4yIDI2LjU3NDEgMjUuOTQ4MyAyNi4wNDIyIDI0Ljg4NDVMMjIuMjMxIDE3LjI2MjJDMjEuNjQxNCAxNi4wODI5IDE5Ljk1ODUgMTYuMDgyOSAxOS4zNjg4IDE3LjI2MjJMMTUuNTU3NyAyNC44ODQ1WiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC42Ii8+DQo8cGF0aCBkPSJNMjQuMDAwMiAxMS4yQzI1Ljc2NzUgMTEuMiAyNy4yMDAyIDkuNzY3MjYgMjcuMjAwMiA3Ljk5OTk1QzI3LjIwMDIgNi4yMzI2NCAyNS43Njc1IDQuNzk5OTUgMjQuMDAwMiA0Ljc5OTk1QzIyLjIzMjkgNC43OTk5NSAyMC44MDAyIDYuMjMyNjQgMjAuODAwMiA3Ljk5OTk1QzIwLjgwMDIgOS43NjcyNiAyMi4yMzI5IDExLjIgMjQuMDAwMiAxMS4yWiIgZmlsbD0id2hpdGUiLz4NCjxkZWZzPg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzEwM18xNzg5IiB4MT0iMTYiIHkxPSIwIiB4Mj0iMTYiIHkyPSIzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwRTY3NiIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDBDODUzIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPC9kZWZzPg0KPC9zdmc+
 """
-
-
-def perform_custom_action(input_data):
-    # Your logic to perform the action
-    result = process_data(input_data)
-    return result
-
-
 from pydantic import BaseModel, Field
 from typing import Optional, List
 import requests
@@ -36,7 +28,7 @@ class ImageModel(BaseModel):
 class Action:
     class Valves(BaseModel):
         NANO_GPT_API_KEY: str = Field(
-            default="",
+            default="Your Nano GPT API Key",
             description="API key for authenticating requests to the Nano GPT API.",
         )
         NAME_PREFIX: str = Field(
@@ -64,88 +56,59 @@ class Action:
             )
             response.raise_for_status()
 
-            models = response.json()
-            models_list = []
+            models = response.json().get("models", {}).get("image", {})
+            if not models:
+                return []
 
-            if "models" in models:
-                image_models = models["models"].get("image", {})
-                if not image_models:
-                    return []
-
-                for model_key, model_info in image_models.items():
-                    resolutions = [
-                        resolution["value"]
-                        for resolution in model_info.get("resolutions", [])
-                    ]
-
-                    models_list.append(
-                        ImageModel(
-                            id=model_info.get("model"),
-                            name=f'{model_info.get("name", model_info.get("model", model_key))}',
-                            description=model_info.get("description", ""),
-                            cost=model_info.get("cost", {}),
-                            maxImages=model_info.get("maxImages", 1),
-                            resolutions=resolutions,
-                            engine=model_info.get("engine", ""),
-                        )
-                    )
-
-                return models_list
-
-            return []
+            return [
+                ImageModel(
+                    id=model_info.get("model"),
+                    name=model_info.get("name", model_key),
+                    description=model_info.get("description", ""),
+                    cost=model_info.get("cost", {}),
+                    maxImages=model_info.get("maxImages", 1),
+                    resolutions=[res["value"] for res in model_info.get("resolutions", [])],
+                    engine=model_info.get("engine", ""),
+                )
+                for model_key, model_info in models.items()
+            ]
 
         except requests.RequestException as e:
             print(f"Request failed: {e}")
             return []
 
-    async def action(
-        self,
-        body: dict,
-        __user__=None,
-        __event_emitter__=None,
-        __event_call__=None,
-    ) -> Optional[dict]:
+    async def action(self, body: dict, __user__=None, __event_emitter__=None, __event_call__=None) -> Optional[dict]:
         print(f"action: {__name__}")
 
-        # Fetch the models
+        # Fetch available models
         models = await self.fetch_models()
         if not models:
             print("No models available for selection.")
             return
 
-        # Prepare selection text
-        selection_text = ""
-        selection_text2 = ""
-        for index, model in enumerate(models, start=1):
-            selection_text += f"{index}. {model.name} - {model.description}\n\n"
-            selection_text2 += f"  \n\n|  {index}. {model.name}  \n\n"
+        # Display model selection options
+        selection_text = "\n\n".join([f"{i + 1}. {model.name} - {model.description}" for i, model in enumerate(models)])
 
-        # Emit selection prompt
+        selection_data = {
+            "type": "input",
+            "data": {
+                "title": "Nano GPT Image Models",
+                "message": f"Input the number of the model you would like to use:\n\n{selection_text}",
+                "placeholder": selection_text,
+            },
+        }
+
         try:
-            selection_data = {
-                "type": "input",
-                "data": {
-                    "title": "Nano GPT Image Models",
-                    "message": "Input the number of the model you would like to use:"
-                    + selection_text2,
-                    "placeholder": selection_text,
-                },
-            }
-
-            # Await user input to select the model
+            # Get user-selected model
             selected_index = await __event_call__(selection_data)
-
-            # Validate the selected index and proceed
-            if selected_index is None or not (
-                1 <= int(selected_index) <= len(models)
-            ):  # Convert to int
+            if not selected_index or not (1 <= int(selected_index) <= len(models)):
                 print("Invalid model selection.")
                 return
 
-            selected_model = models[int(selected_index) - 1]  # Adjust for 0-based list
+            selected_model = models[int(selected_index) - 1]
             print(f"Selected Model: {selected_model.name}")
 
-            # Prompt for additional options
+            # Get image width
             width_data = {
                 "type": "input",
                 "data": {
@@ -155,8 +118,9 @@ class Action:
                 },
             }
             width = await __event_call__(width_data)
-            width = int(width) if width else 1024  # Default to 1024 if no input
+            width = int(width) if width else 1024
 
+            # Get image height
             height_data = {
                 "type": "input",
                 "data": {
@@ -166,9 +130,9 @@ class Action:
                 },
             }
             height = await __event_call__(height_data)
-            height = int(height) if height else 1024  # Default to 1024 if no input
+            height = int(height) if height else 1024
 
-            # Prompt for the image generation prompt
+            # Get prompt for image generation
             prompt_data = {
                 "type": "input",
                 "data": {
@@ -179,82 +143,29 @@ class Action:
             }
             image_prompt = await __event_call__(prompt_data)
 
-            # Call the image generation method
-            response_data = self.generate_image(
-                image_prompt, selected_model.id, width, height
-            )
-
-            # Debugging: Check if response_data is None or missing expected keys
-            if response_data is None:
-                print("No response from image generation.")
+            # Generate the image
+            response_data = self.generate_image(image_prompt, selected_model.id, width, height)
+            if not response_data or "data" not in response_data or not response_data["data"]:
                 raise Exception("No image data in the response")
 
-            # Ensure the response is structured as expected
-            if isinstance(response_data, dict) and "data" in response_data:
-                # Check if there are any images in the 'data' list
-                if (
-                    isinstance(response_data["data"], list)
-                    and len(response_data["data"]) > 0
-                ):
-                    # Extract the base64 image data from the first item
-                    image_data = response_data["data"][0].get("b64_json")
-                else:
-                    print("No images found in the response data.")
-                    raise Exception("No image data in the response")
-            else:
-                print("Response structure is incorrect. Response data:", response_data)
-                raise Exception("No image data in the response")
-
-            # Check if the image data is a base64 string (it should be)
+            image_data = response_data["data"][0].get("b64_json")
             if not isinstance(image_data, str):
                 raise Exception("Invalid image data format")
 
             content = f"![Generated Image](data:image/png;base64,{image_data})\n\n"
 
-            # Emit generated image content
-            await __event_emitter__(
-                {
-                    "type": "message",
-                    "data": {"content": content},
-                }
-            )
-            await __event_emitter__(
-                {
-                    "type": "image",
-                    "data": {"content": image_data},
-                }
-            )
+            await __event_emitter__({"type": "message", "data": {"content": content}})
+            await __event_emitter__({"type": "image", "data": {"content": image_data}})
 
             if __event_emitter__:
-                await __event_emitter__(
-                    {
-                        "type": "status",
-                        "data": {
-                            "description": "Image Generated",
-                            "done": True,
-                        },
-                    }
-                )
+                await __event_emitter__({"type": "status", "data": {"description": "Image Generated", "done": True}})
 
         except Exception as e:
-            error_message = f"Error processing image: {str(e)}"
+            error_message = f"Error processing image: {e}"
             print(error_message)
             if __event_emitter__:
-                await __event_emitter__(
-                    {
-                        "type": "status",
-                        "data": {
-                            "description": "Error Generating Image",
-                            "done": True,
-                        },
-                    }
-                )
-                await __event_emitter__(
-                    {
-                        "type": "message",
-                        "data": {"content": error_message},
-                    }
-                )
+                await __event_emitter__({"type": "status", "data": {"description": "Error Generating Image", "done": True}})
+                await __event_emitter__({"type": "message", "data": {"content": error_message}})
 
     def generate_image(self, prompt, model_id, width, height):
         data = {
@@ -264,18 +175,13 @@ class Action:
             "height": height,
         }
         headers = {
-            "x-api-key": f"{self.valves.NANO_GPT_API_KEY}",
+            "x-api-key": self.valves.NANO_GPT_API_KEY,
             "Content-Type": "application/json",
         }
-        response = requests.post(
-            f"{self.valves.NANO_GPT_API_BASE_URL}/generate-image",
-            headers=headers,
-            json=data,
-        )
 
-        # Debugging: Print the response status and content
-        print(f"Response Status Code: {response.status_code}")
-        print(f"Response Content: {response.text}")
+        response = requests.post(
+            f"{self.valves.NANO_GPT_API_BASE_URL}/generate-image", headers=headers, json=data
+        )
 
         if response.status_code == 200:
             return response.json()
