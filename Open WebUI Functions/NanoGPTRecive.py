@@ -8,6 +8,15 @@ author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 nano_address: nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
 """
+#Nano GPT Pipeline https://openwebui.com/f/elliott/nano_gpt/
+#Integrates nano-gpt.com into OpenWebUI for seamless text-based AI tasks, like document retrieval and generation.
+
+#Nano GPT Image Generation Button https://openwebui.com/f/elliott/nanoimages/
+#Allows users to generate images from text prompts with nano-gpt.com.
+
+#Nano GPT Receive Nano Button https://openwebui.com/f/elliott/nanogpt_receive_nano/
+#Automates receiving Nano cryptocurrency through OpenWebUI for use with nano-gpt.com.
+
 from pydantic import BaseModel, Field
 from typing import Optional
 import requests
