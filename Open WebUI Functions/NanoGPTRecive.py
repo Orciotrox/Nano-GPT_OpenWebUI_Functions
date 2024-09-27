@@ -1,8 +1,8 @@
 """
 title: Nano GPT Revice Nano
 author: Elliott Groves
-version: 1.0
-date: 2024-09-24
+version: 1.0.1
+date: 2024-09-27
 description: Nano GPT recive Nano balance button for openwebui.
 author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
