@@ -82,7 +82,7 @@ class Action:
                 # message = "\n- **📌 Response 📌:** Error Unexpected response"
 
             urlqr = f"https://api.qrserver.com/v1/create-qr-code/?data={resultdep}&size=300x300"
-            table = f"---\n ## Attempting to receive Nano:\n>``` 📌 Response 📌\n{message}\n>``` \n>``` 🪙 Balance 🪙\n{balance} Nano\n>``` \n>``` 🏛️ Nano Deposit Address 🏛️\n{resultdep}\n>```\n 🏛️ Nano Deposit QR Code 🏛️\n![🏛️ Nano Deposit QR Code 🏛️]({urlqr})\n---"
+            table = f"\n\n---\n ## Attempting to receive Nano:\n>``` 📌 Response 📌\n{message}\n>``` \n>``` 🪙 Balance 🪙\n{balance} Nano\n>``` \n>``` 🏛️ Nano Deposit Address 🏛️\n{resultdep}\n>```\n 🏛️ Nano Deposit QR Code 🏛️\n![🏛️ Nano Deposit QR Code 🏛️]({urlqr})\n---"
             message = table
 
             # Emit status messages back to the UI
@@ -94,7 +94,7 @@ class Action:
             )
 
         except Exception as e:
-            error_message = f"---\n ## Error receiving Nano:\n>``` {str(e)}\n>```Try resetting the API Key for Nano-gpt.com in openwebui.\n---"
+            error_message = f"\n\n---\n ## Error receiving Nano:\n>``` {str(e)}\n>```Try resetting the API Key for Nano-gpt.com in openwebui.\n---"
             print(error_message)
             await __event_emitter__(
                 {
