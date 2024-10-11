@@ -1,12 +1,11 @@
 """"
 title: Nano GPT 
 author: Elliott Groves
-version: 2.0.2
+version: 1.0.2
 date: 2024-10-10
 description: Nano GPT for openwebui.
 author_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
 funding_url: https://github.com/Orciotrox/Nano-GPT.com_OpenWebUI
-nano_address: nano_1pkmodta8fg8ti39pr1doe1mjbwo8cu3c9mt5u38d73d5t57d9nmgmnheifk
 """
 
 from typing import List, Union, Generator, Iterator
@@ -110,11 +109,16 @@ class Pipe:
                 system_message = {}  # Default to an empty dict
             if messages is None:
                 messages = []  # Default to an empty list
-            processed_messages = []
+
+            # Extract content from system message if present
             for content in system_message:
                 content_sys = system_message.get("content", "")
+
+            # Extract content from user/assistant messages
             for message in messages:
                 content_message = message.get("content", "")
+
+            # Choose the correct content based on system or user messages
             if (
                 "Use the following context as your learned knowledge, inside <context></context>"
                 in content_sys
@@ -122,24 +126,29 @@ class Pipe:
                 content = content_sys
             else:
                 content = content_message
+
+            # Split content if necessary (e.g., for Nano handling)
             if "\n\n---\n## Attempting to receive Nano:" in content:
                 content = content.split("\n\n---\n## Attempting to receive Nano:")[0]
-            processed_messages.append(
+
+            # Prepare processed messages
+            processed_messages = [
                 {
                     "role": message["role"],
                     "content": content,
                 }
-            )
+                for message in messages
+            ]
 
+            # Remove the system message from `messages` and pass it as top-level
             model_name = body.get("model", "")
             if model_name.startswith("nanogpt2."):
                 model_name = model_name[len("nanogpt2.") :]
 
             payload = {
                 "model": model_name,
-                "messages": body.get(
-                    "messages", []
-                ),  # Use an empty list if 'messages' is None
+                "system": system_message,  # Send the system message at the top level
+                "messages": processed_messages,  # User/Assistant messages only
                 "prompt": content,
             }
 
@@ -148,6 +157,7 @@ class Pipe:
                 "Content-Type": "application/json",
             }
             print(f"Using model: {model_name}")  # Log the model name
+            print(f"Using Payload: {payload}")
 
             start_time = time.time()
             r = requests.post(
